@@ -14,4 +14,9 @@ FactoryGirl.define do
     sequence(:description) { |n| "It does #{n} thing(s)" }
   end
 
+  factory :review do
+    sequence(:rating) { rand(1..5) }
+    association :user, factory: :user
+    association :tool, factory: :tool
+  end
 end
