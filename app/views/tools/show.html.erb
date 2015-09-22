@@ -1,0 +1,15 @@
+<h1><%= @tool.name %></h1>
+<h3><%= @tool.description %></h3>
+<br>
+<%= link_to "All Tools", tools_path %>
+
+<h3>Reviews</h3>
+
+<% @reviews.each do |review| %>
+  <h5><%= review.rating %> out of 5
+    <br>
+    <%= review.body %></h5>
+<% end %>
+<br>
+
+<%= link_to "Add Review for #{@tool.name}", "/tools/"+@tool.to_param+"/reviews/new" %>
