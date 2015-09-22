@@ -20,7 +20,6 @@ feature 'user should view index page - ', %(
   scenario 'user should see a list of reviews for that tool' do
     review = FactoryGirl.create(:review)
     visit "/tools/#{review.tool.id}"
-    save_and_open_page
     expect(page).to have_content(review.rating)
   end
 end
