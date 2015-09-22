@@ -4,7 +4,7 @@ feature 'user views tools index page - ', %(
   As an authenticated user
   I want to see a list of all dev tools
   So that I can learn about new dev tools.
-  ) do
+) do
 
   # Acceptance Criteria:
   # [x] When I visit the index path I should see a list of dev tool names.
