@@ -5,6 +5,6 @@ class Review < ActiveRecord::Base
   validates :rating, presence: true
   validates :rating, numericality: { only_integer: true }
   validates :rating, inclusion: { in: 1..5 }
-  validates :tool_id, presence: true
-  validates :user_id, presence: true
+  validates :tool, presence: true
+  validates :user, presence: true
 end
