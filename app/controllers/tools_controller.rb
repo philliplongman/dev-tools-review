@@ -23,7 +23,7 @@ class ToolsController < ApplicationController
       flash[:notice] = "Successfully created a new dev tool!"
       redirect_to tool_path(@tool)
     else
-      flash[:errors] = "Please fill out both fields."
+      flash[:errors] = @tool.errors.full_messages.join(" | ")
       render :new
     end
   end
