@@ -13,14 +13,14 @@ feature 'user views tools index page - ', %(
   scenario 'user visits index page' do
     tool = FactoryGirl.create(:tool)
 
-    visit '/tools'
+    visit tools_path
     expect(page).to have_content(tool.name)
   end
 
   scenario 'user visits root path' do
     tool = FactoryGirl.create(:tool)
 
-    visit '/'
+    visit root_path
     expect(page).to have_content(tool.name)
   end
 end

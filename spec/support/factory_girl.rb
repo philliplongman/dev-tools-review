@@ -12,6 +12,12 @@ FactoryGirl.define do
     sequence(:user_id) { |n| n }
     sequence(:name) { |n| "DevTool#{n}" }
     sequence(:description) { |n| "It does #{n} thing(s)" }
+    user
   end
 
+  factory :review do
+    sequence(:rating) { rand(1..5) }
+    association :user, factory: :user
+    association :tool, factory: :tool
+  end
 end
