@@ -16,9 +16,7 @@ class ToolsController < ApplicationController
 
   def create
     @tool = Tool.new(tool_params)
-    # Dummy data until models are connected
     @tool.user = current_user
-    @tool.category_id = 1
     if @tool.save
       flash[:notice] = "Successfully created a new dev tool!"
       redirect_to tool_path(@tool)
