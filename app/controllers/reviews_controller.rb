@@ -1,10 +1,5 @@
 class ReviewsController < ApplicationController
   before_action :authenticate_user!
-  # def new
-  #   @tool = Tool.find(params[:tool_id])
-  #   @review = @tool.reviews.build
-  #   binding.pry
-  # end
 
   def create
     # @review = Review.new(review_params)
@@ -23,6 +18,7 @@ class ReviewsController < ApplicationController
   end
 
   private
+  
   def review_params
     params.require(:review).permit(:rating, :body, :tool_id)
   end

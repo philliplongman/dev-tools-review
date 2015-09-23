@@ -11,7 +11,8 @@ feature 'authenticated user adds new review to a dev tool - ', %(
   # [] If I am not signed in when I submit, I am taken to the login page
   # [] I must specify a rating to submit
   # [] If I do not specify a rating, I recieve an error message
-  # [] When I successfully submit a new review, I receive a message informing me that it has been successfully submitted
+  # [] When I successfully submit a new review,
+  #    I receive a message informing me that it has been successfully submitted
   # [] When I successfully submit a new review, I see it added to the page
 
   scenario 'authenticated user submits a review' do
@@ -46,8 +47,7 @@ feature 'authenticated user adds new review to a dev tool - ', %(
     click_button 'Submit'
 
     expect(page).to have_content(
-    "You need to sign in or sign up before "\
-    "continuing"
+      "You need to sign in or sign up before continuing"
     )
   end
 end
