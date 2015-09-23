@@ -30,6 +30,7 @@ class ToolsController < ApplicationController
   end
 
   private
+  
   def tool_params
     params.require(:tool).permit(:name, :description)
   end

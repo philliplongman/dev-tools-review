@@ -10,9 +10,12 @@ feature 'authenticated user adds new dev tool - ', %(
   # [x] I can click a link on the main page to add a new tool
   # [x] If I am not signed in, I am taken to the login page
   # [x] I must specify a name and description to submit the new tool form
-  # [x] If I do not specify a name or description, I recieve an error message
-  # [x] When I successfully submit a new tool, I receive a message informing me that it has been successfully submitted
-  # [x] When I successfully submit a new tool, I am taken to that tool's page
+  # [x] If I do not specify a name or description,
+  #     I recieve an error message
+  # [x] When I successfully submit a new tool,
+  #     I receive a message informing me that it has been successfully submitted
+  # [x] When I successfully submit a new tool,
+  #     I am taken to that tool's page
 
   scenario 'authenticated user submits a tool' do
     user = FactoryGirl.create(:user)
@@ -38,7 +41,9 @@ feature 'authenticated user adds new dev tool - ', %(
     visit root_path
     click_link 'Add a dev tool!'
 
-    expect(page).to have_content("You need to sign in or sign up before continuing.")
+    expect(page).to have_content(
+      "You need to sign in or sign up before continuing."
+    )
   end
 
   scenario 'user submits a blank form' do
