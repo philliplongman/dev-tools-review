@@ -6,10 +6,25 @@
 <h3>Reviews</h3>
 
 <% @reviews.each do |review| %>
-  <h5><%= review.rating %> out of 5
+  <h5><%= '★' * review.rating.to_i %>
     <br>
     <%= review.body %></h5>
 <% end %>
 <br>
 
-<%= link_to "Add Review for #{@tool.name}", "/tools/"+@tool.to_param+"/reviews/new" %>
+<ul class="accordion" data-accordion>
+  <li class="accordion-navigation">
+    <%= link_to "Add your own review of #{@tool.name}", "#review-form" %>
+    <div id="review-form" class="content">
+      <%= form_for [@tool, @review] do |f| %>
+        <%= f.label :rating, "My rating" %>
+        <%= f.select :rating, [nil, ['★', 1], ['★★', 2], ['★★★', 3], ['★★★★', 4], ['★★★★★', 5] ] %>
+
+        <%= f.label :body, "My review" %>
+        <%= f.text_area :body, rows: "10" %>
+
+        <%= f.submit 'Submit', class: "button radius" %>
+      <% end %>
+    </div>
+  </li>
+</ul>

@@ -20,6 +20,7 @@ feature 'user should view index page - ', %(
   scenario 'user should see a list of reviews for that tool' do
     review = FactoryGirl.create(:review)
     visit tool_path(review.tool)
-    expect(page).to have_content(review.rating)
+    expect(page).to have_content('★' * review.rating.to_i)
+    expect(page).to have_content(review.body)
   end
 end
