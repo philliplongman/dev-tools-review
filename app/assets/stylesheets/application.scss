@@ -15,3 +15,23 @@
  *= require foundation_and_overrides
 
  */
+
+$secondary-color: #f4eaea;
+
+body {
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+#tool-info {
+  margin-bottom: 30px;
+}
+
+#background-box {
+  margin-top: 20px;
+  background-color: $secondary-color;
+  border: 50px $secondary-color solid;
+  border-radius: 6px;
+}

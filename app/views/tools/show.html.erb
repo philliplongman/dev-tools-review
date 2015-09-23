@@ -1,30 +1,35 @@
-<h1><%= @tool.name %></h1>
-<h3><%= @tool.description %></h3>
-<br>
-<%= link_to "All Tools", tools_path %>
+<div class="row" id="tool-info">
+  <h1><%= @tool.name %></h1>
+  <p><%= @tool.description %></p>
+</div>
 
-<h3>Reviews</h3>
 
-<% @reviews.each do |review| %>
-  <h5><%= '★' * review.rating.to_i %>
-    <br>
-    <%= review.body %></h5>
-<% end %>
-<br>
+<div class="row">
+  <h3>Reviews</h3>
 
-<ul class="accordion" data-accordion>
-  <li class="accordion-navigation">
-    <%= link_to "Add your own review of #{@tool.name}", "#review-form" %>
-    <div id="review-form" class="content">
-      <%= form_for [@tool, @review] do |f| %>
-        <%= f.label :rating, "My rating" %>
-        <%= f.select :rating, [nil, ['★', 1], ['★★', 2], ['★★★', 3], ['★★★★', 4], ['★★★★★', 5] ] %>
+  <% @reviews.each do |review| %>
+    <h5><%= '★' * review.rating.to_i %>
+      <br>
+      <%= review.body %></h5>
+  <% end %>
 
-        <%= f.label :body, "My review" %>
-        <%= f.text_area :body, rows: "10" %>
+  <ul class="accordion" data-accordion>
+    <li class="accordion-navigation">
+      <%= link_to "Add your own review of #{@tool.name}", "#review-form" %>
+      <div id="review-form" class="content">
+        <%= form_for [@tool, @review] do |f| %>
+          <div class="medium-6 column">
+            <%= f.label :rating, "My rating" %>
+            <%= f.select :rating, [nil, ['★', 1], ['★★', 2], ['★★★', 3], ['★★★★', 4], ['★★★★★', 5] ] %>
+          </div>
+          <div class="small-12 column">
+            <%= f.label :body, "My review" %>
+            <%= f.text_area :body, rows: "10" %>
+            <%= f.submit 'Submit', class: "button radius" %>
+          </div>
 
-        <%= f.submit 'Submit', class: "button radius" %>
-      <% end %>
-    </div>
-  </li>
-</ul>
+        <% end %>
+      </div>
+    </li>
+  </ul>
+</div>

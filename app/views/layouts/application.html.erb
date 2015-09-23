@@ -6,7 +6,7 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-  
+
   <nav class="top-bar">
     <ul class="title-area">
       <li class="name">
@@ -26,15 +26,20 @@
     </section>
   </nav>
 
-  <%- flash.each do |key, value| -%>
-    <div class="flash flash-<%= key %>">
-      <%= value %>
+  <div class="row">
+    <div class="small-12 column" id="background-box">
+      <%- flash.each do |key, value| -%>
+        <div class="flash flash-<%= key %>">
+          <%= value %>
+        </div>
+      <%- end -%>
+
+      <%= yield %>
+
+      <%= javascript_include_tag 'application' %>
+      <%= yield :extra_footer %>
     </div>
-  <%- end -%>
+  </div>
 
-  <%= yield %>
-
-  <%= javascript_include_tag 'application' %>
-  <%= yield :extra_footer %>
 </body>
 </html>
