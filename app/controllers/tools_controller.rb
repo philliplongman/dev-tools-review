@@ -8,7 +8,6 @@ class ToolsController < ApplicationController
   def show
     @reviews = Review.all
     @tool = Tool.find(params[:id])
-
   end
 
   def new
@@ -30,7 +29,7 @@ class ToolsController < ApplicationController
   end
 
   private
-  
+
   def tool_params
     params.require(:tool).permit(:name, :description)
   end
