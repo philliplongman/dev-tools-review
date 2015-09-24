@@ -8,7 +8,8 @@ class ToolsController < ApplicationController
   def show
     @tool = Tool.find(params[:id])
     @reviews = @tool.reviews
-    @review = @tool.reviews.build
+    @review = Review.new
+    @comment = Comment.new
   end
 
   def new
@@ -33,3 +34,6 @@ class ToolsController < ApplicationController
     params.require(:tool).permit(:name, :description)
   end
 end
+
+# create comments controller with create applicationr
+# edit show action in tools controllerclear

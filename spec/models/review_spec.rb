@@ -8,4 +8,5 @@ RSpec.describe Review, type: :model do
   it { should validate_inclusion_of(:rating).in_range(1..5) }
   it { should belong_to(:user) }
   it { should belong_to(:tool) }
+  it { should have_many(:comments) }
 end

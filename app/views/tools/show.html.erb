@@ -11,6 +11,23 @@
     <h5><%= '★' * review.rating.to_i %>
       <br>
       <%= review.body %></h5>
+
+
+      <ul class="accordion" data-accordion>
+        <li class="accordion-navigation">
+          <%= link_to "Add comment", "#comment-form" %>
+          <div id="comment-form" class="content">
+            <%= form_for [review, @comment] do |f| %>
+              <div class="medium-6 column">
+                <%= f.text_area :body %>
+                <%= f.submit 'Submit comment', class: "button radius" %>
+              </div>
+            <% end %>
+          </div>
+        </li>
+      </ul>
+
+
   <% end %>
 
   <ul class="accordion" data-accordion>
