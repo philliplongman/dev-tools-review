@@ -13,6 +13,7 @@ class ToolsController < ApplicationController
 
   def new
     @tool = Tool.new
+    @categories = Category.all
   end
 
   def create
@@ -30,6 +31,6 @@ class ToolsController < ApplicationController
   private
 
   def tool_params
-    params.require(:tool).permit(:name, :description)
+    params.require(:tool).permit(:name, :category_id, :description)
   end
 end
