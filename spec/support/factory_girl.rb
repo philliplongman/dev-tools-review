@@ -8,10 +8,9 @@ FactoryGirl.define do
   end
 
   factory :tool do
-    sequence(:category_id) { |n| n }
-    user
     sequence(:name) { |n| "DevTool#{n}" }
     sequence(:description) { |n| "It does #{n} thing(s)" }
+    user
   end
 
   factory :review do
