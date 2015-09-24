@@ -8,6 +8,7 @@ class ToolsController < ApplicationController
   def show
     @tool = Tool.find(params[:id])
     @reviews = @tool.reviews
+    @review = @tool.reviews.build
   end
 
   def new
