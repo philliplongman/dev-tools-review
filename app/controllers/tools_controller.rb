@@ -9,6 +9,7 @@ class ToolsController < ApplicationController
     @tool = Tool.find(params[:id])
     @reviews = @tool.reviews
     @review = @tool.reviews.build
+    @category = @tool.category
   end
 
   def new
@@ -24,6 +25,7 @@ class ToolsController < ApplicationController
       redirect_to tool_path(@tool)
     else
       flash[:errors] = @tool.errors.full_messages.join(" | ")
+      @categories = Category.all
       render :new
     end
   end
