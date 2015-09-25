@@ -16,8 +16,8 @@
 
     <section class="top-bar-section">
       <ul class="left">
-        <li class="has-dropdown">
-          <%= link_to "Categories", "#" %>
+        <li class="has-dropdown not-click">
+          <%= link_to "Categories", categories_path %>
           <ul class="dropdown">
             <% @categories.each do |category| %>
               <li> <%= link_to category.name, category_path(category.id) %> </li>
