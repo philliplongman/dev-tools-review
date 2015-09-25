@@ -1,9 +1,9 @@
 <div class="row">
-  <h1>Dev Tools</h1>
+  <h1><%= @category.name %></h1>
 
   <div class="small-12 column">
     <ul>
-      <% @tools.each do |tool| %>
+      <% @category.tools.each do |tool| %>
       <li><%= link_to tool.name, tool_path(tool.id) %></li>
       <% end %>
     </ul>

@@ -15,6 +15,17 @@
     </ul>
 
     <section class="top-bar-section">
+      <ul class="left">
+        <li class="has-dropdown">
+          <%= link_to "Categories", "#" %>
+          <ul class="dropdown">
+            <% @categories.each do |category| %>
+              <li> <%= link_to category.name, category_path(category.id) %> </li>
+            <% end %>
+          </ul>
+        </li>
+      </ul>
+
       <ul class="right">
         <%- if current_user -%>
           <li><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></li>
@@ -28,9 +39,11 @@
 
   <div class="row">
     <div class="small-12 column background-box">
+
       <%- flash.each do |key, value| -%>
-        <div class="flash flash-<%= key %>">
+        <div data-alert class="flash flash-<%= key %> alert-box">
           <%= value %>
+          <a href="#" class="close">&times;</a>
         </div>
       <%- end -%>
 

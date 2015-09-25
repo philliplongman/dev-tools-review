@@ -9,10 +9,12 @@ class ToolsController < ApplicationController
     @tool = Tool.find(params[:id])
     @reviews = @tool.reviews
     @review = @tool.reviews.build
+    @category = @tool.category
   end
 
   def new
     @tool = Tool.new
+    @categories = Category.all
   end
 
   def create
@@ -23,6 +25,7 @@ class ToolsController < ApplicationController
       redirect_to tool_path(@tool)
     else
       flash[:errors] = @tool.errors.full_messages.join(" | ")
+      @categories = Category.all
       render :new
     end
   end
@@ -30,6 +33,6 @@ class ToolsController < ApplicationController
   private
 
   def tool_params
-    params.require(:tool).permit(:name, :description)
+    params.require(:tool).permit(:name, :category_id, :description)
   end
 end
