@@ -8,6 +8,7 @@ class ToolsController < ApplicationController
   def show
     @tool = Tool.find(params[:id])
     @reviews = @tool.reviews
+    # @comments = Comment.find_by(tool: @tool.id)
     @review = Review.new
     @comment = Comment.new
   end
@@ -35,5 +36,5 @@ class ToolsController < ApplicationController
   end
 end
 
-# create comments controller with create applicationr
+# create comments controller with create application
 # edit show action in tools controllerclear
