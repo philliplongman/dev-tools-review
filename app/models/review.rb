@@ -1,6 +1,7 @@
 class Review < ActiveRecord::Base
   belongs_to :user
   belongs_to :tool
+  has_many :comments
 
   validates :rating, presence: true
   validates :rating, numericality: { only_integer: true }

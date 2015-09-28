@@ -1,5 +1,5 @@
 class ReviewsController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, only: [:create]
 
   def create
     # @review = Review.new(review_params)

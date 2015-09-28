@@ -8,10 +8,36 @@
 <div class="row">
   <h3>Reviews</h3>
 
-  <% @reviews.each do |review| %>
+  <% @reviews.each_with_index do |review, idx| %>
     <h5><%= '★' * review.rating.to_i %>
       <br>
       <%= review.body %></h5>
+      <br>
+      <ul class="comment-list">
+        <% review.comments.each do |comment| %>
+          <li>
+            <span class="user-email"><%= "#{comment.user.email} opines on this opinion: " %></span>
+            <br>
+            <%= comment.body %>
+          </li>
+        <% end %>
+      </ul>
+
+      <ul class="accordion" data-accordion>
+        <li class="accordion-navigation">
+          <%= link_to "Add comment", "#comment-form#{idx}" %>
+          <div id= <%="comment-form#{idx}"%> class="content comment-form">
+            <%= form_for [review, @comment] do |f| %>
+              <div class="medium-6 column">
+                <%= f.text_area :body %>
+                <%= f.submit 'Submit comment', class: "button radius" %>
+              </div>
+            <% end %>
+          </div>
+        </li>
+      </ul>
+
+
   <% end %>
 
   <ul class="accordion" data-accordion>
