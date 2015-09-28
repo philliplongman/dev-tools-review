@@ -17,7 +17,7 @@
  */
 
 $secondary-color: #f4eaea;
-$iron: #CCCCCC;
+$iron: #cccccc;
 
 body {
   background: image-url(Colorful-Geometric-Wallpaper-23) no-repeat center center fixed;
@@ -42,31 +42,31 @@ body {
   list-style-type: none;
 }
 
-
 .review {
+  border-top: 1px $iron solid;
   margin-top: 10px;
   padding-top: 5px;
-  border-top: 1px $iron solid;
 
   p {
-    margin-bottom: 0px;
     font-size: 90%;
-
+    margin-bottom: 0;
   }
 }
+
 .comment-div {
   background: darken($secondary-color, 4%);
   font-size: 90%;
   padding-top: 8px;
 
   li {
-    padding-top: 10px;
-    padding-bottom: 6px;
     border-top: 1px darken($secondary-color, 15%) solid;
     font-size: 90%;
+    padding-top: 10px;
+    padding-bottom: 6px;
   }
 
-  li, .accordion-navigation {
+  li,
+  .accordion-navigation {
     margin-right: 14px;
   }
 

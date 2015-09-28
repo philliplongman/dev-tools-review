@@ -24,7 +24,11 @@ def add_comments(review, user)
   )
 end
 
-user = User.new(email: "user@email.com", password: "password", password_confirmation: "password")
+user = User.new(
+  email: "user@email.com",
+  password: "password",
+  password_confirmation: "password"
+)
 
 categories = [
   Category.new(name: "Languages"),
