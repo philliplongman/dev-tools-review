@@ -11,9 +11,8 @@ feature 'Admin deletes review - ', %(
     review = FactoryGirl.create(:review)
     visit tool_path(review.tool)
     click_button("Delete review #{review.id}")
-    expect {
-      Review.find(review.id)
-    }.to raise_error { "Couldn't find Tool with 'id'=#{review.id}" }
+    expect { Review.find(review.id) }
+      .to raise_error { "Couldn't find Tool with 'id'=#{review.id}" }
   end
 
   scenario 'Members should not be able to delete reviews' do
