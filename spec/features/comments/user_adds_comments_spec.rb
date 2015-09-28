@@ -27,8 +27,9 @@ feature 'Authenticated user adds comment on review - ', %(
     click_button('Submit comment')
 
     expect(page).not_to have_content('Thank you for your valid(?) opinion!')
-    expect(page).to have_content("You need to sign in or sign'\
-      ' up before continuing.")
+    expect(page).to have_content(
+      "You need to sign in or sign up before continuing."
+    )
   end
 
   scenario 'Authenticated user submits a comment' do
