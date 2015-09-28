@@ -17,7 +17,6 @@ feature 'authenticated user adds new review to a dev tool - ', %(
 
   scenario 'authenticated user submits a review' do
     tool = FactoryGirl.create(:tool)
-
     sign_in
     visit tool_path(tool)
     select '★★★★★', from: 'My rating'

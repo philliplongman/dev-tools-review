@@ -10,6 +10,11 @@
 
   <% @reviews.each_with_index do |review, idx| %>
     <h5><%= '★' * review.rating.to_i %>
+
+    <% if current_user && current_user.admin? %>
+      <%= button_to "Delete review #{review.id}", review_path(review.id), method: :delete %>
+    <% end %>
+
       <br>
       <%= review.body %></h5>
       <br>
