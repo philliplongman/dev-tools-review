@@ -15,8 +15,7 @@ feature 'Admin deletes user - ', %(
   end
 
   scenario 'Members should not be able to delete users' do
-    member = FactoryGirl.create(:user)
     sign_in
-    expect{ visit users_path }.to raise_error(ActionController::RoutingError)
+    expect { visit users_path }.to raise_error(ActionController::RoutingError)
   end
 end

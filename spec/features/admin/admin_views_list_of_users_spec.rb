@@ -14,11 +14,8 @@ feature 'An admin views a list of users - ', %(
   end
 
   scenario 'Member cannot access list of users' do
-    member = FactoryGirl.create(:user)
     sign_in
-    # visit users_path
-    expect{ visit users_path }.to raise_error(ActionController::RoutingError)
-    # expect{ visit users_path }.to eq("hiii")
+    expect { visit users_path }.to raise_error(ActionController::RoutingError)
   end
 
 end
