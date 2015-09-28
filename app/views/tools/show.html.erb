@@ -12,7 +12,8 @@
     <h5><%= '★' * review.rating.to_i %>
 
     <% if current_user && current_user.admin? %>
-      <%= button_to "Delete review #{review.id}", review_path(review.id), method: :delete %>
+      <%= button_to "Delete review #{review.id}",
+      tool_review_path(review.tool, review), method: :delete %>
     <% end %>
 
       <br>
@@ -20,8 +21,13 @@
       <br>
       <ul class="comment-list">
         <% review.comments.each do |comment| %>
+        <% if current_user && current_user.admin? %>
+          <%= button_to "Delete comment #{comment.id}",
+          review_comment_path(comment.review, comment), method: :delete %>
+        <% end %>
           <li>
-            <span class="user-email"><%= "#{comment.user.email} opines on this opinion: " %></span>
+            <span class="user-email">
+              <%= "#{comment.user.email} opines on this opinion: " %></span>
             <br>
             <%= comment.body %>
           </li>
@@ -41,7 +47,6 @@
           </div>
         </li>
       </ul>
-
 
   <% end %>
 

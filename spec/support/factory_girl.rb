@@ -21,6 +21,12 @@ FactoryGirl.define do
     tool
   end
 
+  factory :comment do
+    body "great review!"
+    review
+    user
+  end
+
   factory :category do
     name "Language"
   end

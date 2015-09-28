@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   resources :tools, only: [:index, :show, :new, :create, :destroy] do
     resources :reviews, only: [:new, :create, :destroy]
   end
-  resources :reviews, only: [:new, :create, :show, :index, :destroy] do
-    resources :comments, only: [:new, :create]
+  resources :reviews, only: [:new, :create, :show, :index] do
+    resources :comments, only: [:new, :create, :destroy]
   end
 end
