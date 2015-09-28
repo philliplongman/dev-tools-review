@@ -17,3 +17,16 @@
 //= require_tree .
 
 $(function(){ $(document).foundation(); });
+
+
+// $($(".comment-toggle")[1]).click(function(){
+//    $($(".comment-div")[1]).slideToggle( "slow" );
+// });
+
+$(".review").click(function (e) {
+    var source = $(e.target);
+    if(source.is(".comment-toggle")){
+      var index = source.parent().index() - 4;
+      $($(".comment-div")[index]).slideToggle( "slow" );
+    }
+});

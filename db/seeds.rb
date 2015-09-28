@@ -6,6 +6,24 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+def add_comments(review, user)
+  Comment.create(
+    body: "Are you kidding me, you idiot!",
+    user: user,
+    review: review
+  )
+  Comment.create(
+    body: "Don't listen to that guy, you are dead on. He's the idiot",
+    user: user,
+    review: review
+  )
+  Comment.create(
+    body: Faker::Hacker.say_something_smart,
+    user: user,
+    review: review
+  )
+end
+
 user = User.new(email: "user@email.com", password: "password", password_confirmation: "password")
 
 categories = [
@@ -20,23 +38,25 @@ categories = [
   Category.new(name: "Miscellaneous")
 ]
 
-100.times do
-  tool = FactoryGirl.create(:tool, category: categories.sample)
-  good_review = FactoryGirl.create(:review, rating: 5, body: "It's awesome!")
-  add_comments(good_review)
-  bad_review = FactoryGirl.create(:review, rating: 1, body: "It's the worst!")
-  add_comments(bad_review)
-end
-
-def add_comments(review)
-  FactoryGirl.create(
-    :comment,
-    review: review,
-    body: "Are you kidding me, you idiot!"
+100.times do |i|
+  tool = Tool.create(
+    user: user,
+    name: "Dev Tool #{i}",
+    description: Faker::Lorem.paragraphs.join(" "),
+    category: categories.sample
   )
-  FactoryGirl.create(
-    :comment,
-    review: review,
-    body: "Don't listen to that guy, you are dead on. He's the idiot"
+  good_review = Review.create(
+    rating: 5,
+    body: "It's awesome!",
+    tool: tool,
+    user: user
   )
+  add_comments(good_review, user)
+  bad_review = Review.create(
+    rating: 1,
+    body: "It's the worst!",
+    tool: tool,
+    user: user
+  )
+  add_comments(bad_review, user)
 end
