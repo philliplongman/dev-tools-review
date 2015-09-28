@@ -10,6 +10,7 @@ FactoryGirl.define do
   factory :tool do
     sequence(:name) { |n| "DevTool#{n}" }
     sequence(:description) { |n| "It does #{n} thing(s)" }
+    category
     user
   end
 
@@ -18,5 +19,9 @@ FactoryGirl.define do
     body "So good!"
     user
     tool
+  end
+
+  factory :category do
+    name "Language"
   end
 end

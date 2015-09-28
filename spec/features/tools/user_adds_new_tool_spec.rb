@@ -19,6 +19,7 @@ feature 'authenticated user adds new dev tool - ', %(
 
   scenario 'authenticated user submits a tool' do
     user = FactoryGirl.create(:user)
+    category = FactoryGirl.create(:category)
 
     visit new_user_session_path
     fill_in 'Email', with: user.email
@@ -29,6 +30,7 @@ feature 'authenticated user adds new dev tool - ', %(
     click_link "Add a dev tool!"
 
     fill_in 'tool[name]', with: "Ruby"
+    select category.name, from: 'Category'
     fill_in 'tool[description]', with: "This language is very shiney."
 
     click_button 'Submit'
