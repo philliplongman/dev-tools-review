@@ -17,6 +17,7 @@
  */
 
 $secondary-color: #f4eaea;
+$iron: #cccccc;
 
 body {
   background: image-url(Colorful-Geometric-Wallpaper-23) no-repeat center center fixed;
@@ -41,7 +42,56 @@ body {
   list-style-type: none;
 }
 
-.user-email {
-  color: 333333;
-  font-size: 12px;
+.review {
+  border-top: 1px $iron solid;
+  margin-top: 10px;
+  padding-top: 5px;
+
+  p {
+    font-size: 90%;
+    margin-bottom: 0;
+  }
 }
+
+.comment-div {
+  background: darken($secondary-color, 4%);
+  font-size: 90%;
+  padding-top: 8px;
+
+  li {
+    border-top: 1px darken($secondary-color, 15%) solid;
+    font-size: 90%;
+    padding-bottom: 6px;
+    padding-top: 10px;
+  }
+
+  li,
+  .accordion {
+    margin-right: 12px;
+  }
+
+  .accordion {
+    margin-bottom: 20px;
+  }
+}
+
+.user-attribution {
+  color: darken($secondary-color, 60%);
+
+  a {
+    color: inherit;
+    text-decoration: underline;
+  }
+}
+
+.accordion-navigation {
+  padding: 2px;
+}
+
+.new-review-form {
+  margin-top: 20px;
+}
+
+// .new-comment-form {
+//   margin-top: 20px;
+// }

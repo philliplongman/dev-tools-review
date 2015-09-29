@@ -6,41 +6,47 @@
 
 
 <div class="row">
+
   <h3>Reviews</h3>
+  <h6><%= "#{@tool.reviews.count} reviews—average rating: #{@tool.average_stars}"%></h6>
 
   <% @reviews.each_with_index do |review, idx| %>
-    <h5><%= '★' * review.rating.to_i %>
-      <br>
-      <%= review.body %></h5>
-      <br>
-      <ul class="comment-list">
-        <% review.comments.each do |comment| %>
-          <li>
-            <span class="user-email"><%= "#{comment.user.email} opines on this opinion: " %></span>
-            <br>
-            <%= comment.body %>
-          </li>
-        <% end %>
-      </ul>
+    <% unless review.body.empty? %>
+    <div class="review">
+      <p><%= '★' * review.rating.to_i %></p>
+      <p><%= review.body %></h5></p>
 
-      <ul class="accordion" data-accordion>
-        <li class="accordion-navigation">
-          <%= link_to "Add comment", "#comment-form#{idx}" %>
-          <div id= <%="comment-form#{idx}"%> class="content comment-form">
-            <%= form_for [review, @comment] do |f| %>
-              <div class="medium-6 column">
-                <%= f.text_area :body %>
-                <%= f.submit 'Submit comment', class: "button radius" %>
-              </div>
+        <%= link_to "#{review.comments.count} comment(s)", "#", class: "comment-toggle" %>
+
+        <div class="small-12 column comment-div" hidden>
+          <ul class="comment-list">
+            <% review.comments.each do |comment| %>
+              <li>
+                <p class="user-attribution"><%= "#{comment.user.email} opines on this opinion: " %></p>
+                <p><%= comment.body %></p>
+              </li>
             <% end %>
-          </div>
-        </li>
-      </ul>
+          </ul>
 
-
+          <ul class="accordion new-comment-form" data-accordion>
+            <li class="accordion-navigation">
+              <%= link_to "Add a comment", "#comment-form#{idx}" %>
+              <div id= <%="comment-form#{idx}"%> class="content comment-form">
+                <%= form_for [review, @comment] do |f| %>
+                  <%= f.text_area :body %>
+                  <%= f.submit 'Submit comment', class: "small button radius" %>
+                <% end %>
+              </div>
+            </li>
+          </ul>
+        </div>
+    </div>
+  <% end %>
   <% end %>
 
-  <ul class="accordion" data-accordion>
+
+
+  <ul class="accordion new-review-form" data-accordion>
     <li class="accordion-navigation">
       <%= link_to "Add your own review of #{@tool.name}", "#review-form" %>
       <div id="review-form" class="content">

@@ -2,7 +2,7 @@ class ToolsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
 
   def index
-    @tools = Tool.all
+    @tools = Tool.order(:name).page params[:page]
   end
 
   def show

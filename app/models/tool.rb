@@ -7,4 +7,9 @@ class Tool < ActiveRecord::Base
   validates :name, presence: true
   validates :description, presence: true
   validates :category, presence: true
+
+  def average_stars
+    return "" if reviews.empty?
+    '★' * reviews.average(:rating)
+  end
 end
