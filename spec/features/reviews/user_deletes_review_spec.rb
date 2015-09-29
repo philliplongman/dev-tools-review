@@ -1,6 +1,5 @@
 require 'rails_helper'
 
-
 feature "User deletes its own review" do
   background do
     @review = FactoryGirl.create(:review)

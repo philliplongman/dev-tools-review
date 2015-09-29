@@ -1,6 +1,5 @@
 require 'rails_helper'
 
-
 feature "User deletes its own tool" do
   background do
     @tool = FactoryGirl.create(:tool)
