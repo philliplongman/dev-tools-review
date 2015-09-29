@@ -12,8 +12,7 @@ feature 'Admin deletes comment - ', %(
     visit tool_path(comment.review.tool)
     click_link "1 comment(s)"
     click_button("Delete comment #{comment.id}")
-    expect { Comment.find(comment.id) }.
-      to raise_error { "Couldn't find Tool with 'id'=#{comment.id}" }
+    expect(page).to_not have_content(comment.body)
   end
 
   scenario 'Members should not be able to delete comments', js: true do
