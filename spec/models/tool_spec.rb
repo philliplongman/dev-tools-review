@@ -9,4 +9,6 @@ RSpec.describe Tool, type: :model do
   it { should have_many(:reviews) }
   it { should belong_to(:user) }
   it { should belong_to(:category) }
+
+  it { should have_many(:reviews).dependent(:destroy) }
 end
