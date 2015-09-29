@@ -11,7 +11,6 @@ class ReviewsController < ApplicationController
   end
 
   def create
-    # @review = Review.new(review_params)
     @tool = Tool.find(params[:tool_id])
     @review = Review.new(review_params)
     @review.tool = @tool

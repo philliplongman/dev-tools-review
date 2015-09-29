@@ -1,10 +1,21 @@
 require 'factory_girl'
 
 FactoryGirl.define do
-  factory :user do
-    sequence(:email) {|n| "user#{n}@example.com" }
-    password 'password'
-    password_confirmation 'password'
+  factory :category do
+    name "Language"
+  end
+
+  factory :comment do
+    body "I agree!"
+    review
+    user
+  end
+
+  factory :review do
+    rating 4
+    body "So good!"
+    user
+    tool
   end
 
   factory :tool do
@@ -14,20 +25,9 @@ FactoryGirl.define do
     user
   end
 
-  factory :review do
-    sequence(:rating) { rand(1..5) }
-    body "So good!"
-    user
-    tool
-  end
-
-  factory :comment do
-    body "great review!"
-    review
-    user
-  end
-
-  factory :category do
-    name "Language"
+  factory :user do
+    sequence(:email) { |n| "user#{n}@example.com" }
+    password 'password'
+    password_confirmation 'password'
   end
 end

@@ -3,7 +3,7 @@ class ToolsController < ApplicationController
   before_action :set_tool, only: [:destroy]
   before_action :authorize_user, only: [:destroy]
   def index
-    @tools = Tool.all
+    @tools = Tool.order(:name).page params[:page]
   end
 
   def show

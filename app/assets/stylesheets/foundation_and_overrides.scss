@@ -335,7 +335,7 @@ $info-color: #a0d3e8;
 
 // $accordion-navigation-padding: rem-calc(16);
 // $accordion-navigation-bg-color: $silver;
-$accordion-navigation-bg-color: transparentize($info-color, 0.75);
+$accordion-navigation-bg-color: darken($secondary-color, 10%);
 // $accordion-navigation-hover-bg-color: scale-color($accordion-navigation-bg-color, $lightness: -5%);
 // $accordion-navigation-active-bg-color: scale-color($accordion-navigation-bg-color, $lightness: -3%);
 // $accordion-navigation-font-color: $jet;
@@ -344,7 +344,7 @@ $accordion-navigation-bg-color: transparentize($info-color, 0.75);
 
 // $accordion-content-padding: ($column-gutter/2);
 // $accordion-content-active-bg-color: $white;
-$accordion-content-active-bg-color: $secondary-color;
+$accordion-content-active-bg-color: rgba(255, 255, 255, 0);
 
 // 02. Alert Boxes
 // - - - - - - - - - - - - - - - - - - - - - - - - -

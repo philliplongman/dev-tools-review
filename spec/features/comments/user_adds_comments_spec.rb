@@ -14,40 +14,50 @@ feature 'Authenticated user adds comment on review - ', %(
 # [X] There is a link under each review, to add a comment
 
   let(:review) { FactoryGirl.create(:review) }
-  scenario 'User sees link to add comment under review' do
+
+  scenario 'User sees link to add a comment under review', js: true do
     visit tool_path(review.tool)
 
-    expect(page).to have_content('Add comment')
+    expect(page).to have_content('0 comment(s)')
+    click_link '0 comment(s)'
+    expect(page).to have_content('Add a comment')
   end
 
-  scenario 'Unauthenticated user submits a comment' do
+  scenario 'Unauthenticated user submits a comment', js: true do
     visit tool_path(review.tool)
-    click_link 'Add comment'
+
+    click_link '0 comment(s)'
+    click_link 'Add a comment'
+
     fill_in('comment_body', with: 'I want to rate your rating!!!!!')
     click_button('Submit comment')
 
     expect(page).not_to have_content('Thank you for your valid(?) opinion!')
-    expect(page).to have_content("You need to sign in or sign"\
-      " up before continuing.")
+    expect(page).to have_content(
+      "You need to sign in or sign up before continuing."
+    )
   end
 
-  scenario 'Authenticated user submits a comment' do
-    review = FactoryGirl.create(:review)
-
+  scenario 'Authenticated user submits a comment', js: true do
     sign_in
     visit tool_path(review.tool)
-    click_link 'Add comment'
+    click_link '0 comment(s)'
+    click_link 'Add a comment'
     fill_in('comment_body', with: 'I want to rate your rating!!!!!')
     click_button('Submit comment')
+
+    expect(page).to have_content('1 comment(s)')
+    click_link '1 comment(s)'
 
     expect(page).to have_content('Thank you for your valid(?) opinion!')
     expect(page).to have_content('I want to rate your rating!!!!!')
   end
 
-  scenario 'Authenticated user submits a blank comment' do
+  scenario 'Authenticated user submits a blank comment', js: true do
     sign_in
     visit tool_path(review.tool)
-    click_link 'Add comment'
+    click_link '0 comment(s)'
+    click_link 'Add a comment'
     click_button('Submit comment')
 
     expect(page).to have_content("Body can't be blank")

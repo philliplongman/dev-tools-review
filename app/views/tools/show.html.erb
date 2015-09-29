@@ -6,51 +6,57 @@
 
 
 <div class="row">
+
   <h3>Reviews</h3>
+  <h6><%= "#{@tool.reviews.count} reviews—average rating: #{@tool.average_stars}"%></h6>
 
   <% @reviews.each_with_index do |review, idx| %>
-    <h5><%= '★' * review.rating.to_i %>
+    <% unless review.body.empty? %>
+    <div class="review">
+      <p><%= '★' * review.rating.to_i %></p>
+      <% if current_user && (current_user.admin? || review.user) %>
+        <%= button_to "Delete review #{review.id}",
+        tool_review_path(review.tool, review), method: :delete,
+        class: "small button radius" %>
+      <% end %>
+      <p><%= review.body %></h5></p>
 
-    <% if current_user && (current_user.admin? || review.user) %>
-      <%= button_to "Delete review #{review.id}",
-      tool_review_path(review.tool, review), method: :delete %>
-    <% end %>
+        <%= link_to "#{review.comments.count} comment(s)", "#", class: "comment-toggle" %>
 
-      <br>
-      <%= review.body %></h5>
-      <br>
-      <ul class="comment-list">
-        <% review.comments.each do |comment| %>
-        <% if current_user && (current_user.admin? || comment.user) %>
-          <%= button_to "Delete comment #{comment.id}",
-          review_comment_path(comment.review, comment), method: :delete %>
-        <% end %>
-          <li>
-            <span class="user-email">
-              <%= "#{comment.user.email} opines on this opinion: " %></span>
-            <br>
-            <%= comment.body %>
-          </li>
-        <% end %>
-      </ul>
-
-      <ul class="accordion" data-accordion>
-        <li class="accordion-navigation">
-          <%= link_to "Add comment", "#comment-form#{idx}" %>
-          <div id= <%="comment-form#{idx}"%> class="content comment-form">
-            <%= form_for [review, @comment] do |f| %>
-              <div class="medium-6 column">
-                <%= f.text_area :body %>
-                <%= f.submit 'Submit comment', class: "button radius" %>
-              </div>
+        <div class="small-12 column comment-div" hidden>
+          <ul class="comment-list">
+            <% review.comments.each do |comment| %>
+              <li>
+                <p class="user-attribution"><%= "#{comment.user.email} opines on this opinion: " %></p>
+                <p><%= comment.body %></p>
+                <% if current_user && (current_user.admin? || comment.user) %>
+                  <%= button_to "Delete comment #{comment.id}",
+                  review_comment_path(comment.review, comment), method: :delete,
+                  class: "small button radius" %>
+                <% end %>
+              </li>
             <% end %>
-          </div>
-        </li>
-      </ul>
+          </ul>
 
+          <ul class="accordion new-comment-form" data-accordion>
+            <li class="accordion-navigation">
+              <%= link_to "Add a comment", "#comment-form#{idx}" %>
+              <div id= <%="comment-form#{idx}"%> class="content comment-form">
+                <%= form_for [review, @comment] do |f| %>
+                  <%= f.text_area :body %>
+                  <%= f.submit 'Submit comment', class: "small button radius" %>
+                <% end %>
+              </div>
+            </li>
+          </ul>
+        </div>
+    </div>
+  <% end %>
   <% end %>
 
-  <ul class="accordion" data-accordion>
+
+
+  <ul class="accordion new-review-form" data-accordion>
     <li class="accordion-navigation">
       <%= link_to "Add your own review of #{@tool.name}", "#review-form" %>
       <div id="review-form" class="content">
