@@ -26,7 +26,7 @@ $(function(){ $(document).foundation(); });
 $(".review").click(function (e) {
     var source = $(e.target);
     if(source.is(".comment-toggle")){
-      var index = source.parent().index() - 4;
+      var index = source.parent().index() - 2;
       $($(".comment-div")[index]).slideToggle( "slow" );
     }
 });

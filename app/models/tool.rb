@@ -18,6 +18,7 @@ class Tool < ActiveRecord::Base
   end
 
   def average_stars
-    '★' * average_rating
+    # '★' * average_rating
+    2
   end
 end

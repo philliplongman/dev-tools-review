@@ -66,10 +66,13 @@ body {
   }
 
   li,
-  .accordion-navigation {
-    margin-right: 14px;
+  .accordion {
+    margin-right: 12px;
   }
 
+  .accordion {
+    margin-bottom: 20px;
+  }
 }
 
 .user-attribution {
@@ -84,3 +87,11 @@ body {
 .accordion-navigation {
   padding: 2px;
 }
+
+.new-review-form {
+  margin-top: 20px;
+}
+
+// .new-comment-form {
+//   margin-top: 20px;
+// }

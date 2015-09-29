@@ -9,7 +9,6 @@
 
   <h3>Reviews</h3>
   <h6><%= "#{@tool.reviews.count} reviews—average rating: #{@tool.average_stars}"%></h6>
-  <p><%= ""%></p>
 
   <% @reviews.each_with_index do |review, idx| %>
     <% unless review.body.empty? %>
@@ -29,15 +28,13 @@
             <% end %>
           </ul>
 
-          <ul class="accordion" data-accordion>
+          <ul class="accordion new-comment-form" data-accordion>
             <li class="accordion-navigation">
-              <%= link_to "Add comment", "#comment-form#{idx}" %>
+              <%= link_to "Add a comment", "#comment-form#{idx}" %>
               <div id= <%="comment-form#{idx}"%> class="content comment-form">
                 <%= form_for [review, @comment] do |f| %>
-                  <div class="medium-6 column">
-                    <%= f.text_area :body %>
-                    <%= f.submit 'Submit comment', class: "button radius" %>
-                  </div>
+                  <%= f.text_area :body %>
+                  <%= f.submit 'Submit comment', class: "small button radius" %>
                 <% end %>
               </div>
             </li>
@@ -49,7 +46,7 @@
 
 
 
-  <ul class="accordion" data-accordion>
+  <ul class="accordion new-review-form" data-accordion>
     <li class="accordion-navigation">
       <%= link_to "Add your own review of #{@tool.name}", "#review-form" %>
       <div id="review-form" class="content">
