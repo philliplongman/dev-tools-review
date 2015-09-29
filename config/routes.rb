@@ -2,13 +2,13 @@ Rails.application.routes.draw do
   root 'tools#index'
   devise_for :users
 
+  resources :users, only: [:index, :destroy]
   resources :categories, only: [:index, :show]
-  resources :tools, only: [:index, :show, :new, :create] do
-    resources :reviews, only: [:new, :create]
+  resources :tools, only: [:index, :show, :new, :create, :destroy] do
+    resources :reviews, only: [:new, :create, :destroy]
   end
-
   resources :reviews, only: [:new, :create, :show, :index] do
-    resources :comments, only: [:new, :create]
+    resources :comments, only: [:new, :create, :destroy]
     resources :votes, only: [:create, :update]
   end
 end

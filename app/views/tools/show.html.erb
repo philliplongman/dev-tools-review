@@ -14,6 +14,11 @@
     <% unless review.body.empty? %>
     <div class="review">
       <p><%= '★' * review.rating.to_i %></p>
+      <% if current_user && (current_user.admin? || review.user) %>
+        <%= button_to "Delete review #{review.id}",
+        tool_review_path(review.tool, review), method: :delete,
+        class: "small button radius" %>
+      <% end %>
       <p><%= review.body %></h5></p>
 
         <%= link_to "#{review.comments.count} comment(s)", "#", class: "comment-toggle" %>
@@ -24,6 +29,11 @@
               <li>
                 <p class="user-attribution"><%= "#{comment.user.email} opines on this opinion: " %></p>
                 <p><%= comment.body %></p>
+                <% if current_user && (current_user.admin? || comment.user) %>
+                  <%= button_to "Delete comment #{comment.id}",
+                  review_comment_path(comment.review, comment), method: :delete,
+                  class: "small button radius" %>
+                <% end %>
               </li>
             <% end %>
           </ul>
