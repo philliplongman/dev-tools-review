@@ -23,7 +23,7 @@ feature 'Authenticated user adds comment on review - ', %(
     expect(page).to have_content('Add a comment')
   end
 
-  scenario 'Unauthenticated user submits a comment', js: true  do
+  scenario 'Unauthenticated user submits a comment', js: true do
     visit tool_path(review.tool)
 
     click_link '0 comment(s)'
