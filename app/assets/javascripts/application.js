@@ -18,15 +18,6 @@
 
 $(function(){ $(document).foundation(); });
 
-
-// $($(".comment-toggle")[1]).click(function(){
-//    $($(".comment-div")[1]).slideToggle( "slow" );
-// });
-
-$(".review").click(function (e) {
-    var source = $(e.target);
-    if(source.is(".comment-toggle")){
-      var index = source.parent().index() - 2;
-      $($(".comment-div")[index]).slideToggle( "slow" );
-    }
+$(".comment-toggle").click(function(event) {
+  $(this).closest(".review").find(".comment-div").slideToggle("slow");
 });
