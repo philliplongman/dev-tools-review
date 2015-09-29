@@ -7,7 +7,8 @@
       <li>
         <%= link_to tool.name, tool_path(tool.id) %>
           <% if current_user && (current_user.admin? || tool.user) %>
-        <%= button_to "Delete #{tool.name}", tool_path(tool), method: :delete %>
+        <%= button_to "Delete #{tool.name}", tool_path(tool), method: :delete,
+        class: "small button radius" %>
         <% end %>
       </li>
       <% end %>
