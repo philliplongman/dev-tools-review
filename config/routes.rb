@@ -9,5 +9,6 @@ Rails.application.routes.draw do
 
   resources :reviews, only: [:new, :create, :show, :index] do
     resources :comments, only: [:new, :create]
+    resources :votes, only: [:create, :update]
   end
 end
