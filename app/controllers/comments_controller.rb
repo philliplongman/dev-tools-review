@@ -1,11 +1,12 @@
 class CommentsController < ApplicationController
-  before_action :authenticate_user!, only: [:create]
+  before_action :authenticate_user!, only: [:destroy, :create]
+  before_action :set_comment, only: [:destroy]
   before_action :authorize_user, only: [:destroy]
 
   def destroy
-    @comment = Comment.find(params[:id])
     @comment.destroy
-    redirect_to tools_path
+    flash[:alert] = "Comment deleted"
+    redirect_to tool_path(@comment.review.tool)
   end
 
   def create
@@ -23,8 +24,12 @@ class CommentsController < ApplicationController
   end
 
   private
+  def set_comment
+    @comment = Comment.find(params[:id])
+  end
+
   def authorize_user
-    if !user_signed_in? || !current_user.admin?
+    unless current_user == @comment.user || current_user.admin?
       raise ActionController::RoutingError.new("Not Found")
     end
   end

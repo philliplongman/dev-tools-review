@@ -1,5 +1,6 @@
 class ToolsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
+  before_action :set_tool, only: [:destroy]
   before_action :authorize_user, only: [:destroy]
   def index
     @tools = Tool.all
@@ -21,6 +22,7 @@ class ToolsController < ApplicationController
   def destroy
     @tool = Tool.find(params[:id])
     @tool.destroy
+    flash[:alert] = "Tool deleted"
     redirect_to tools_path
   end
 
@@ -38,9 +40,12 @@ class ToolsController < ApplicationController
   end
 
   private
+  def set_tool
+    @tool = Tool.find(params[:id])
+  end
 
   def authorize_user
-    if !user_signed_in? || !current_user.admin?
+    unless current_user == @tool.user || current_user.admin?
       raise ActionController::RoutingError.new("Not Found")
     end
   end

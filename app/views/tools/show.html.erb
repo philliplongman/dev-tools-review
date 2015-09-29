@@ -11,7 +11,7 @@
   <% @reviews.each_with_index do |review, idx| %>
     <h5><%= '★' * review.rating.to_i %>
 
-    <% if current_user && current_user.admin? %>
+    <% if current_user && (current_user.admin? || review.user) %>
       <%= button_to "Delete review #{review.id}",
       tool_review_path(review.tool, review), method: :delete %>
     <% end %>
@@ -21,7 +21,7 @@
       <br>
       <ul class="comment-list">
         <% review.comments.each do |comment| %>
-        <% if current_user && current_user.admin? %>
+        <% if current_user && (current_user.admin? || comment.user) %>
           <%= button_to "Delete comment #{comment.id}",
           review_comment_path(comment.review, comment), method: :delete %>
         <% end %>

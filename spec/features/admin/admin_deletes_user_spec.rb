@@ -12,6 +12,7 @@ feature 'Admin deletes user - ', %(
     visit users_path
     click_button("Delete #{member.email}")
     expect(page).to_not have_content(member.email)
+    expect(page).to have_content("User deleted")
   end
 
   scenario 'Members should not be able to delete users' do

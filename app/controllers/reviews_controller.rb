@@ -1,11 +1,13 @@
 class ReviewsController < ApplicationController
   before_action :authenticate_user!, only: [:create]
+  before_action :set_review, only: [:destroy]
   before_action :authorize_user, only: [:destroy]
 
   def destroy
     @review = Review.find(params[:id])
     @review.destroy
-    redirect_to tools_path
+    flash[:alert] = "Review deleted"
+    redirect_to tool_path(@review.tool)
   end
 
   def create
@@ -25,9 +27,12 @@ class ReviewsController < ApplicationController
   end
 
   private
+  def set_review
+    @review = Review.find(params[:id])
+  end
 
   def authorize_user
-    if !user_signed_in? || !current_user.admin?
+    unless current_user == @review.user || current_user.admin?
       raise ActionController::RoutingError.new("Not Found")
     end
   end
