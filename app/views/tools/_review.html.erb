@@ -1,0 +1,33 @@
+<% unless review.body.empty? %>
+<div class="review">
+
+  <p><%= review.star_rating %></p>
+  <p><%= review.body %></p>
+  <%= link_to "#{review.comments.count} comment(s)", "#", class: "comment-toggle" %>
+
+  <div class="small-12 column comment-div" hidden>
+    <ul class="comment-list">
+      <% review.comments.each do |comment| %>
+      <li>
+        <p class="user-attribution"><%= "#{comment.user.email} opines on this opinion: " %></p>
+        <p><%= comment.body %></p>
+      </li>
+      <% end %>
+    </ul>
+
+    <ul class="accordion new-comment-form" data-accordion>
+      <li class="accordion-navigation">
+        <%= link_to "Add a comment", "#comment-form#{review.id}" %>
+        <div <%= "id=comment-form#{review.id}" %> class="content comment-form" >
+
+          <%= form_for [review, @comment] do |f| %>
+            <%= f.text_area :body %>
+            <%= f.submit 'Submit', class: "small button radius" %>
+          <% end %>
+        </div>
+      </li>
+    </ul>
+
+  </div>
+</div>
+<% end %>
