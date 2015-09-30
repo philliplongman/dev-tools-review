@@ -8,4 +8,8 @@ class Review < ActiveRecord::Base
   validates :rating, inclusion: { in: 1..5 }
   validates :tool, presence: true
   validates :user, presence: true
+
+  def star_rating
+    '★' * rating.to_i
+  end
 end

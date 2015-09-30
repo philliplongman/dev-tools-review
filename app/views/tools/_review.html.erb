@@ -1,0 +1,17 @@
+<% unless review.body.empty? %>
+<div class="review">
+  <% if current_user && (current_user.admin? || review.user) %>
+    <%= button_to "Delete review #{review.id}",
+    tool_review_path(review.tool, review), method: :delete,
+    class: "small button radius" %>
+  <% end %>
+
+  <p><%= review.star_rating %></p>
+  <p><%= review.body %></p>
+  <%= link_to "#{review.comments.count} comment(s)", "#", class: "comment-toggle" %>
+
+  <div class="small-12 column comment-div" hidden>
+    <%= render partial: "comments_section", locals: {review: review} %>
+  </div>
+</div>
+<% end %>

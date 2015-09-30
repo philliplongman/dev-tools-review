@@ -1,0 +1,28 @@
+<ul class="comment-list">
+  <% review.comments.each do |comment| %>
+    <li>
+      <% if current_user && (current_user.admin? || comment.user) %>
+        <%= button_to "Delete comment #{comment.id}",
+        review_comment_path(comment.review, comment), method: :delete,
+        class: "small button radius" %>
+      <% end %>
+
+      <p class="user-attribution"><%= "#{comment.user.email} opines on this opinion: " %></p>
+      <p><%= comment.body %></p>
+    </li>
+  <% end %>
+</ul>
+
+<ul class="accordion new-comment-form" data-accordion>
+  <li class="accordion-navigation">
+    <%= link_to "Add a comment", "#comment-form#{review.id}" %>
+
+    <div id= <%="comment-form#{review.id}"%> class="content comment-form">
+      <%= form_for [review, @comment] do |f| %>
+        <%= f.text_area :body %>
+        <%= f.submit 'Submit comment', class: "small button radius" %>
+      <% end %>
+    </div>
+
+  </li>
+</ul>

@@ -1,0 +1,15 @@
+<div class="content" id="review-form">
+
+  <%= form_for [@tool, @review] do |f| %>
+  <div class="medium-6 column">
+    <%= f.label :rating, "My rating" %>
+    <%= f.select :rating, [nil, ['★', 1], ['★★', 2], ['★★★', 3], ['★★★★', 4], ['★★★★★', 5] ] %>
+  </div>
+  <div class="small-12 column">
+    <%= f.label :body, "My review" %>
+    <%= f.text_area :body, rows: "10" %>
+    <%= f.submit 'Submit', class: "button radius" %>
+  </div>
+  <% end %>
+
+</div>
