@@ -2,8 +2,13 @@ class ToolsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   before_action :set_tool, only: [:destroy]
   before_action :authorize_user, only: [:destroy]
+
   def index
-    @tools = Tool.order(:name).page params[:page]
+    if params[:search]
+      @tools = Tool.search(params[:search]).order(:name).page params[:page]
+    else
+      @tools = Tool.order(:name).page params[:page]
+    end
   end
 
   def show
