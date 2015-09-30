@@ -13,11 +13,11 @@ feature 'user uses the search bar to look for a tool - ', %(
   # [x] The letter-case of my searches should not affect my results.
 
   before(:each) do
-    ruby = FactoryGirl.create(:tool, name: "Ruby")
-    javascript = FactoryGirl.create(:tool, name: "Javascript")
-    foundation = FactoryGirl.create(:tool, name: "Foundation")
-    sass = FactoryGirl.create(:tool, name: "Sass")
-    atom = FactoryGirl.create(:tool, name: "Atom")
+    FactoryGirl.create(:tool, name: "Ruby")
+    FactoryGirl.create(:tool, name: "Javascript")
+    FactoryGirl.create(:tool, name: "Foundation")
+    FactoryGirl.create(:tool, name: "Sass")
+    FactoryGirl.create(:tool, name: "Atom")
   end
 
   scenario 'User searches for a tool that exists' do
