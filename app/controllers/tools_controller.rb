@@ -1,6 +1,7 @@
 class ToolsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
-
+  before_action :set_tool, only: [:destroy]
+  before_action :authorize_user, only: [:destroy]
   def index
     @tools = Tool.order(:name).page params[:page]
   end
@@ -18,6 +19,13 @@ class ToolsController < ApplicationController
     @categories = Category.all
   end
 
+  def destroy
+    @tool = Tool.find(params[:id])
+    @tool.destroy
+    flash[:alert] = "Tool deleted"
+    redirect_to tools_path
+  end
+
   def create
     @tool = Tool.new(tool_params)
     @tool.user = current_user
@@ -32,6 +40,15 @@ class ToolsController < ApplicationController
   end
 
   private
+  def set_tool
+    @tool = Tool.find(params[:id])
+  end
+
+  def authorize_user
+    unless current_user == @tool.user || current_user.admin?
+      raise ActionController::RoutingError.new("Not Found")
+    end
+  end
 
   def tool_params
     params.require(:tool).permit(:name, :category_id, :description)
