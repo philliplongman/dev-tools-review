@@ -26,7 +26,21 @@
         </li>
       </ul>
 
+
       <ul class="right">
+        <li class="has-form">
+          <%= form_tag(tools_path, method: "get", id: "search-form", class: "search-form") do %>
+          <div class="row collapse">
+            <div class="large-8 small-9 columns">
+              <%= text_field_tag :search, params[:search], placeholder: "Search for a tool", id: "search-form-box" %>
+            </div>
+            <div class="large-4 small-3 columns">
+              <%= submit_tag "Search", :name => nil, class: "alert button expand" %>
+            </div>
+          </div>
+          <% end %>
+        </li>
+
         <%- if current_user -%>
           <li><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></li>
         <%- else -%>

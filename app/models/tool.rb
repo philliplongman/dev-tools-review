@@ -12,4 +12,8 @@ class Tool < ActiveRecord::Base
     return "" if reviews.empty?
     '★' * reviews.average(:rating)
   end
+
+  def self.search(query)
+    where("name ilike ?", "%#{query}%")
+  end
 end

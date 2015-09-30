@@ -1,7 +1,14 @@
 <div class="row">
-  <h1>Dev Tools</h1>
+
+  <% if params[:search] %>
+    <h1>Search Results</h1>
+  <% else %>
+    <h1>Dev Tools</h1>
+  <% end %>
 
   <div class="small-12 column">
+    <h6><%= "No results found." if params[:search] && @tools.empty? %></h6>
+
     <ul>
       <% @tools.each do |tool| %>
       <li>
@@ -16,6 +23,6 @@
   </div>
 </div>
 
-<%= link_to "Add a dev tool!", new_tool_path %><
+<%= link_to "Add a dev tool!", new_tool_path %>
 
 <%= paginate @tools %>
