@@ -18,14 +18,9 @@ feature 'authenticated user adds new dev tool - ', %(
   #     I am taken to that tool's page
 
   scenario 'authenticated user submits a tool' do
-    user = FactoryGirl.create(:user)
     category = FactoryGirl.create(:category)
 
-    visit new_user_session_path
-    fill_in 'Email', with: user.email
-    fill_in 'Password', with: user.password
-    click_button 'Log in'
-
+    sign_in
     visit root_path
     click_link "Add a dev tool!"
 
@@ -49,13 +44,7 @@ feature 'authenticated user adds new dev tool - ', %(
   end
 
   scenario 'user submits a blank form' do
-    user = FactoryGirl.create(:user)
-
-    visit new_user_session_path
-    fill_in 'Email', with: user.email
-    fill_in 'Password', with: user.password
-    click_button 'Log in'
-
+    sign_in
     visit new_tool_path
     click_button 'Submit'
 
