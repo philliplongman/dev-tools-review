@@ -7,10 +7,10 @@ feature 'user uses the search bar to look for a tool - ', %(
 ) do
 
   # Acceptance Criteria
-  # [] I can search for a tool from the search bar
-  # [] If any tools match my search, I am shown an index of results
-  # [] If no tools match my search, I am shown a results page that says so
-  # [] The letter-case of my searches should not affect my results
+  # [x] I can search for a tool from the search bar.
+  # [x] If any tools match my search, I am shown an index of results.
+  # [x] If no tools match my search, I am shown a results page that says so.
+  # [x] The letter-case of my searches should not affect my results.
 
   before(:each) do
     ruby = FactoryGirl.create(:tool, name: "Ruby")
