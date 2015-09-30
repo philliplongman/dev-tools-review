@@ -15,4 +15,8 @@ class Review < ActiveRecord::Base
     downvotes = votes.where(state: "downvote")
     upvotes.count - downvotes.count
   end
+
+  def star_rating
+    '★' * rating.to_i
+  end
 end

@@ -8,8 +8,8 @@ feature 'Authenticated user adds comment on review - ', %(
 #  Acceptance Criteria
 # [x] If I submit a comment while not signed in, I am redirected to sign-in page
 # [x] If I do not have a text body, I recieve an error message
-# [x] When I successfully submit a comment,
-#  I receive a message informing me that it has been successfully submitted
+# [x] When I successfully submit a comment, I receive a message informing me
+#     that it has been successfully submitted
 # [x] When I successfully submit a new comment, I see it added to the page
 # [X] There is a link under each review, to add a comment
 
@@ -30,7 +30,7 @@ feature 'Authenticated user adds comment on review - ', %(
     click_link 'Add a comment'
 
     fill_in('comment_body', with: 'I want to rate your rating!!!!!')
-    click_button('Submit comment')
+    click_button('Submit')
 
     expect(page).not_to have_content('Thank you for your valid(?) opinion!')
     expect(page).to have_content(
@@ -44,7 +44,7 @@ feature 'Authenticated user adds comment on review - ', %(
     click_link '0 comment(s)'
     click_link 'Add a comment'
     fill_in('comment_body', with: 'I want to rate your rating!!!!!')
-    click_button('Submit comment')
+    click_button('Submit')
 
     expect(page).to have_content('1 comment(s)')
     click_link '1 comment(s)'
@@ -58,7 +58,7 @@ feature 'Authenticated user adds comment on review - ', %(
     visit tool_path(review.tool)
     click_link '0 comment(s)'
     click_link 'Add a comment'
-    click_button('Submit comment')
+    click_button('Submit')
 
     expect(page).to have_content("Body can't be blank")
     expect(page).not_to have_content('Thank you for your valid(?) opinion!')
