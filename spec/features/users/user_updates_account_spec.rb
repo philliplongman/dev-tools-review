@@ -1,10 +1,10 @@
 require 'rails_helper'
 
-feature 'user registers', %Q{
+feature 'user registers', %(
   As a visitor
   I want to update my account info
   So that I'm not trapped in the past'
-} do
+) do
 
   # Acceptance Criteria:
   # [] I can click a link in the nav bar to see a page with my account info.
