@@ -11,7 +11,7 @@ feature 'Email alert sent to tool author when new review posted - ', %(
 # [x] My valid review submission must cause an email to be sent to the
 #  tool author
 # [x] If I submit an invalid review, no email should be sent to the tool
-#  author
+#    author
   scenario "New review on tool sends email to tool poster" do
     ActionMailer::Base.deliveries.clear
     tool = FactoryGirl.create(:tool)
