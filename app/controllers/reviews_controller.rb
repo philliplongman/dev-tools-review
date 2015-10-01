@@ -17,6 +17,7 @@ class ReviewsController < ApplicationController
     @review.user = current_user
 
     if @review.save
+      ReviewMailer.new_review(@review).deliver_later
       flash[:notice] = "Success"
       redirect_to tool_path(@tool)
     else
