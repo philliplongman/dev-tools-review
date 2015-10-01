@@ -9,15 +9,15 @@ feature 'Admin deletes tool - ', %(
   scenario 'Admin should be able to delete tools' do
     tool = FactoryGirl.create(:tool)
     sign_in_admin
-    visit tools_path
-    click_button("Delete #{tool.name}")
+    visit tool_path(tool)
+    click_link("Delete Tool")
     expect(page).to_not have_content(tool.name)
   end
 
   scenario 'Members should not be able to delete tools' do
     tool = FactoryGirl.create(:tool)
     sign_in
-    visit tools_path
-    expect(page).to_not have_content("Delete #{tool.name}")
+    visit tool_path(tool)
+    expect(page).to_not have_content("Delete Tool")
   end
 end

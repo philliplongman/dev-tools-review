@@ -11,8 +11,9 @@ feature 'Admin deletes comment - ', %(
     comment = FactoryGirl.create(:comment)
     visit tool_path(comment.review.tool)
     click_link "1 comment(s)"
-    click_button("Delete comment #{comment.id}")
-    expect(page).to_not have_content(comment.body)
+    click_link("Delete Comment")
+    sleep(1)
+    expect(page).to have_content("0 comment(s)")
   end
 
   scenario 'Members should not be able to delete comments', js: true do
@@ -20,6 +21,6 @@ feature 'Admin deletes comment - ', %(
     sign_in
     visit tool_path(comment.review.tool)
     click_link "1 comment(s)"
-    expect(page).to_not have_content("Delete comment #{comment.id}")
+    expect(page).to_not have_content("Delete Comment")
   end
 end

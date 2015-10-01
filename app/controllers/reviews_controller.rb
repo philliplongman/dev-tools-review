@@ -25,6 +25,24 @@ class ReviewsController < ApplicationController
     end
   end
 
+  def edit
+    @review = Review.find(params[:id])
+    @tool = @review.tool
+  end
+
+  def update
+    @review = Review.update(params[:id], review_params)
+    @tool = @review.tool
+    if @review.save
+      flash[:notice] = "Review updated"
+      redirect_to @tool
+    else
+      flash[:errors] = @review.errors.full_messages.join(" | ")
+      @categories = Category.all
+      render :new
+    end
+  end
+
   private
   def set_review
     @review = Review.find(params[:id])

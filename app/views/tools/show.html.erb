@@ -1,8 +1,14 @@
 <div class="row tool-info">
   <%= link_to @category.name, @category %>
-  <h1><%= @tool.name %></h1>
-  <p><%= @tool.description %></p>
-</div>
+    <h1><%= @tool.name %></h1>
+    <p><%= @tool.description %></p>
+    <% if current_user && (current_user.admin? || current_user == @tool.user) %>
+      <ul class="inline-list">
+        <li><%= link_to "Edit Tool", edit_tool_path(@tool), method: :get %></li>
+        <li><%= link_to "Delete Tool", tool_path(@tool), method: :delete %></li>
+      </ul>
+    <% end %>
+  </div>
 
 <div class="row">
   <h3>Reviews</h3>
@@ -15,7 +21,7 @@
   <ul class="accordion new-review-form" data-accordion>
     <li class="accordion-navigation">
       <%= link_to "Add your own review of #{@tool.name}", "#review-form" %>
-      <%= render "new_review" %>
+      <%= render "reviews/form_for" %>
     </li>
   </ul>
 </div>

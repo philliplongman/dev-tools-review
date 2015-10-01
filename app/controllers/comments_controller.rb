@@ -23,6 +23,25 @@ class CommentsController < ApplicationController
     end
   end
 
+  def edit
+    @comment = Comment.find(params[:id])
+    @review = @comment.review
+    @tool = @review.tool
+  end
+
+  def update
+    @comment = Comment.update(params[:id], comment_params)
+    @tool = @comment.review.tool
+    if @comment.save
+      flash[:notice] = "Comment updated"
+      redirect_to @tool
+    else
+      flash[:errors] = @comment.errors.full_messages.join(" | ")
+      @categories = Category.all
+      render :new
+    end
+  end
+
   private
   def set_comment
     @comment = Comment.find(params[:id])
