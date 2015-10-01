@@ -7,10 +7,10 @@ feature 'Email alert sent to tool author when new review posted - ', %(
 )do
 
 # Acceptance Criteria:
-# [] I must be signed in
-# [] My valid review submission must cause an email to be sent to the
+# [x] I must be signed in
+# [x] My valid review submission must cause an email to be sent to the
 #  tool author
-# [] If I submit an invalid review, no email should be sent to the tool
+# [x] If I submit an invalid review, no email should be sent to the tool
 #  author
   scenario "New review on tool sends email to tool poster" do
     ActionMailer::Base.deliveries.clear
