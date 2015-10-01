@@ -39,7 +39,7 @@ class ReviewsController < ApplicationController
     else
       flash[:errors] = @review.errors.full_messages.join(" | ")
       @categories = Category.all
-      render :new
+      render :edit
     end
   end
 

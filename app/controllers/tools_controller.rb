@@ -29,7 +29,7 @@ class ToolsController < ApplicationController
     @tool.user = current_user
     if @tool.save
       flash[:notice] = "Successfully created a new dev tool!"
-      redirect_to tool_path(@tool)
+      redirect_to @tool
     else
       flash[:errors] = @tool.errors.full_messages.join(" | ")
       @categories = Category.all
@@ -50,7 +50,7 @@ class ToolsController < ApplicationController
     else
       flash[:errors] = @tool.errors.full_messages.join(" | ")
       @categories = Category.all
-      render :new
+      render :edit
     end
   end
 

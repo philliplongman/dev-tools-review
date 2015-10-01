@@ -1,0 +1,17 @@
+<div class="small-12 columns">
+  <h1>User info</h1>
+</div>
+
+<div class="small-4 columns">
+  <%= image_tag "http://placebear.com/800/800" %>
+  <%= link_to "Update", edit_user_path %>
+</div>
+<div class="small-8 columns">
+  <table>
+    <tr>
+      <td><strong>Email:</strong></td>
+      <td><%= current_user.email %></td>
+      <td><%= link_to "Update", edit_user_path %></td>
+    </tr>
+  </table>
+</div>
