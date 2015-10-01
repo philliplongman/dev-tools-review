@@ -1,18 +1,16 @@
 class VotesController < ApplicationController
-    before_action :authenticate_user!
+  before_action :authenticate_user!
   def create
-
     vote = Vote.find_by(
-        user_id: vote_params[:user_id],
-        review_id: vote_params[:review_id]
-      )
+      user_id: vote_params[:userId],
+      review_id: vote_params[:reviewId]
+    )
 
     if vote.nil?
 
       vote = Vote.new(vote_params)
       vote.save!
     else
-
       if vote.state == vote_params[:state]
         vote.state = nil
         vote.save!
@@ -26,7 +24,6 @@ class VotesController < ApplicationController
   end
 
   private
-
   def vote_params
     params.require(:vote).permit(:state, :user_id, :review_id)
   end
