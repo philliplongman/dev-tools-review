@@ -3,7 +3,7 @@
 </div>
 
 <div class="small-12 column">
-  <%= form_for [@review, @comment] do |f| %>
+  <%= form_for [@review, @comment], url: review_comment_path do |f| %>
     <%= f.label :body, "Comment" %>
     <%= f.text_area :body %>
     <%= f.submit 'Submit comment', class: "small button radius" %>

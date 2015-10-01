@@ -37,7 +37,6 @@ class CommentsController < ApplicationController
       redirect_to @tool
     else
       flash[:errors] = @comment.errors.full_messages.join(" | ")
-      @categories = Category.all
       render :edit
     end
   end
