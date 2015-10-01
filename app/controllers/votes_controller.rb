@@ -22,7 +22,6 @@ class VotesController < ApplicationController
     end
     render json: { voteCount: vote.review.vote_count }
   end
-
   private
   def vote_params
     params.require(:vote).permit(:state, :user_id, :review_id)
