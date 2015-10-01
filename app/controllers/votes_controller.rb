@@ -1,14 +1,18 @@
 class VotesController < ApplicationController
-  def create
     before_action :authenticate_user!
+  def create
 
-    vote = Vote.new(vote_params)
-
-    if !vote.save
-      vote = Vote.find_by(
+    vote = Vote.find_by(
         user_id: vote_params[:user_id],
-        review_id: vote_params[:user_id]
+        review_id: vote_params[:review_id]
       )
+
+    if vote.nil?
+
+      vote = Vote.new(vote_params)
+      vote.save!
+    else
+
       if vote.state == vote_params[:state]
         vote.state = nil
         vote.save!
@@ -16,9 +20,9 @@ class VotesController < ApplicationController
         vote.state = vote_params[:state]
         vote.save!
       end
-    end
 
-    # render json
+    end
+    render json: { voteCount: vote.review.vote_count }
   end
 
   private
