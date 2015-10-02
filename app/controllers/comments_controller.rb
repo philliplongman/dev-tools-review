@@ -5,21 +5,25 @@ class CommentsController < ApplicationController
 
   def destroy
     @comment.destroy
-    flash[:alert] = "Comment deleted"
+    flash[:success] = "Comment deleted"
     redirect_to tool_path(@comment.review.tool)
   end
 
   def create
-    @reviews = Review.find(params[:review_id])
+    @review = Review.find(params[:review_id])
     @comment = Comment.new(comment_params)
     @comment.user = current_user
-    @comment.review_id = @reviews.id
+    @comment.review_id = @review.id
     if @comment.save
-      flash[:notice] = "Thank you for your valid(?) opinion!"
-      redirect_to tool_path(@reviews.tool_id)
+      flash[:success] = "Thank you for your valid(?) opinion!"
+      redirect_to tool_path(@review.tool_id)
     else
-      flash[:errors] = @comment.errors.full_messages.join(" | ")
-      redirect_to tool_path(@reviews.tool_id)
+      @tool = @review.tool
+      @reviews = @tool.reviews
+      @category = @tool.category
+      @review = Review.new
+      flash[:warning] = "Form errors"
+      render "tools/show"
     end
   end
 
@@ -33,10 +37,10 @@ class CommentsController < ApplicationController
     @comment = Comment.update(params[:id], comment_params)
     @tool = @comment.review.tool
     if @comment.save
-      flash[:notice] = "Comment updated"
+      flash[:info] = "Comment updated"
       redirect_to @tool
     else
-      flash[:errors] = @comment.errors.full_messages.join(" | ")
+      flash[:warning] = "Form errors"
       render :edit
     end
   end

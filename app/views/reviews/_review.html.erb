@@ -12,7 +12,7 @@
   <%= link_to "#{review.comments.count} comment(s)", "#", class: "comment-toggle" %>
 
   <div class="small-12 column comment-div" hidden>
-    <%= render partial: "comments_section", locals: {review: review} %>
+    <%= render partial: "tools/comments_section", locals: {review: review} %>
   </div>
 </div>
 <% end %>

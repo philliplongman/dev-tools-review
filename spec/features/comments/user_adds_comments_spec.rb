@@ -60,7 +60,6 @@ feature 'Authenticated user adds comment on review - ', %(
     click_link 'Add a comment'
     click_button('Submit')
 
-    expect(page).to have_content("Body can't be blank")
-    expect(page).not_to have_content('Thank you for your valid(?) opinion!')
+    expect(page).to have_content("Form errors")
   end
 end

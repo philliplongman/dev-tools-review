@@ -91,3 +91,13 @@ body {
 .new-review-form {
   margin-top: 20px;
 }
+
+.error-div {
+  margin-top: .25em;
+  margin-bottom: .25em;
+  color: red;
+
+  li {
+    font-size: 90%;
+  }
+}

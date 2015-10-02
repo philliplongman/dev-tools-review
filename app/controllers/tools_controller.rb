@@ -28,11 +28,11 @@ class ToolsController < ApplicationController
     @tool = Tool.new(tool_params)
     @tool.user = current_user
     if @tool.save
-      flash[:notice] = "Successfully created a new dev tool!"
+      flash[:success] = "Successfully created a new dev tool!"
       redirect_to @tool
     else
-      flash[:errors] = @tool.errors.full_messages.join(" | ")
       @categories = Category.all
+      flash[:warning] = "Form errors"
       render :new
     end
   end
@@ -45,11 +45,11 @@ class ToolsController < ApplicationController
   def update
     @tool = Tool.update(params[:id], tool_params)
     if @tool.save
-      flash[:notice] = "Tool updated"
+      flash[:info] = "Tool updated"
       redirect_to tool_path(@tool)
     else
-      flash[:errors] = @tool.errors.full_messages.join(" | ")
       @categories = Category.all
+      flash[:warning] = "Form errors"
       render :edit
     end
   end
@@ -57,7 +57,7 @@ class ToolsController < ApplicationController
   def destroy
     @tool = Tool.find(params[:id])
     @tool.destroy
-    flash[:alert] = "Tool deleted"
+    flash[:success] = "Tool deleted"
     redirect_to tools_path
   end
 
@@ -76,6 +76,3 @@ class ToolsController < ApplicationController
     params.require(:tool).permit(:name, :category_id, :description)
   end
 end
-
-# create comments controller with create application
-# edit show action in tools controllerclear

@@ -15,10 +15,10 @@ class UsersController < ApplicationController
   def update
     @user = User.update(current_user, user_params)
     if @user.save
-      flash[:notice] = "User info updated"
+      flash[:info] = "User info updated"
       redirect_to @user
     else
-      flash[:errors] = @user.errors.full_messages.join(" | ")
+      flash[:warning] = "Form errors"
       render :edit
     end
   end
@@ -26,7 +26,7 @@ class UsersController < ApplicationController
   def destroy
     @user = User.find(params[:id])
     @user.destroy
-    flash[:alert] = "User deleted"
+    flash[:info] = "User deleted"
     redirect_to users_path
   end
 

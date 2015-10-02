@@ -20,6 +20,8 @@
 
     <div id= <%="comment-form#{review.id}"%> class="content comment-form">
       <%= form_for [review, @comment] do |f| %>
+        <%= render "layouts/form_errors", object: f.object %>
+
         <%= f.text_area :body %>
         <%= f.submit 'Submit comment', class: "small button radius" %>
       <% end %>

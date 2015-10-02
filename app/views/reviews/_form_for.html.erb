@@ -1,6 +1,8 @@
 <div class="content" id="review-form">
 
   <%= form_for [@tool, @review] do |f| %>
+    <%= render "layouts/form_errors", object: f.object %>
+
   <div class="medium-6 column">
     <%= f.label :rating, "My rating" %>
     <%= f.select :rating, [nil, ['★', 1], ['★★', 2], ['★★★', 3], ['★★★★', 4], ['★★★★★', 5] ] %>

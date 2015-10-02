@@ -59,8 +59,6 @@ feature 'authenticated user adds new dev tool - ', %(
     visit new_tool_path
     click_button 'Submit'
 
-    expect(page).to have_content(
-      "Name can't be blank | Description can't be blank"
-    )
+    expect(page).to have_content("Form errors")
   end
 end

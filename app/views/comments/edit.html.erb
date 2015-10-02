@@ -4,6 +4,8 @@
 
 <div class="small-12 column">
   <%= form_for [@review, @comment], url: review_comment_path do |f| %>
+    <%= render "layouts/form_errors", object: f.object %>
+
     <%= f.label :body, "Comment" %>
     <%= f.text_area :body %>
     <%= f.submit 'Submit comment', class: "small button radius" %>

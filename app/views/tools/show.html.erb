@@ -14,7 +14,7 @@
   <h3>Reviews</h3>
   <h6><%= "#{@tool.reviews.count} reviews—average rating: #{@tool.average_stars}"%></h6>
 
-  <%= render partial: "review", collection: @reviews %>
+  <%= render @reviews %>
 </div>
 
 <div class="row">
