@@ -10,12 +10,12 @@
   <nav class="top-bar">
     <ul class="title-area">
       <li class="name">
-        <h1><%= link_to "Dev Tools Review", root_path %></h1>
+        <h1><%= link_to image_tag("Logo"), root_path %></h1>
       </li>
     </ul>
 
     <section class="top-bar-section">
-      <ul class="left">
+      <ul class="right">
         <li class="has-dropdown not-click">
           <%= link_to "Categories", categories_path %>
           <ul class="dropdown">
@@ -24,10 +24,7 @@
             <% end %>
           </ul>
         </li>
-      </ul>
 
-
-      <ul class="right">
         <li class="has-form">
           <%= form_tag(tools_path, method: "get", id: "search-form", class: "search-form") do %>
           <div class="row collapse">
@@ -51,6 +48,7 @@
       </ul>
     </section>
   </nav>
+
 
   <div class="row">
     <div class="small-12 column background-box">
