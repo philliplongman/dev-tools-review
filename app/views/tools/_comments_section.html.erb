@@ -1,10 +1,11 @@
 <ul class="comment-list">
   <% review.comments.each do |comment| %>
     <li>
-      <% if current_user && (current_user.admin? || comment.user) %>
-        <%= button_to "Delete comment #{comment.id}",
-        review_comment_path(comment.review, comment), method: :delete,
-        class: "small button radius" %>
+      <% if current_user && (current_user.admin? || current_user == comment.user) %>
+        <ul class="inline-list">
+          <li><%= link_to "Edit Comment", edit_review_comment_path(comment.review, comment), method: :get %></li>
+          <li><%= link_to "Delete Comment", review_comment_path(comment.review, comment), method: :delete %></li>
+        </ul>
       <% end %>
 
       <p class="user-attribution"><%= "#{comment.user.email} opines on this opinion: " %></p>
@@ -19,6 +20,8 @@
 
     <div id= <%="comment-form#{review.id}"%> class="content comment-form">
       <%= form_for [review, @comment] do |f| %>
+        <%= render "layouts/form_errors", object: f.object %>
+
         <%= f.text_area :body %>
         <%= f.submit 'Submit comment', class: "small button radius" %>
       <% end %>

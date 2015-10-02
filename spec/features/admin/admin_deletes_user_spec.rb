@@ -10,7 +10,7 @@ feature 'Admin deletes user - ', %(
     member = FactoryGirl.create(:user)
     sign_in_admin
     visit users_path
-    click_button("Delete #{member.email}")
+    first("tr").click_link("Delete User")
     expect(page).to_not have_content(member.email)
     expect(page).to have_content("User deleted")
   end

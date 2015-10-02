@@ -7,7 +7,7 @@ class ReviewsController < ApplicationController
   def destroy
     @review = Review.find(params[:id])
     @review.destroy
-    flash[:alert] = "Review deleted"
+    flash[:success] = "Review deleted"
     redirect_to tool_path(@review.tool)
   end
 
@@ -18,12 +18,33 @@ class ReviewsController < ApplicationController
     @review.user = current_user
 
     if @review.save
+      flash[:success] = "Success"
       ReviewMailer.new_review(@review).deliver_later
-      flash[:notice] = "Success"
       redirect_to tool_path(@tool)
     else
-      flash[:error] = "Please specify rating"
-      redirect_to tool_path(@tool)
+      @reviews = @tool.reviews
+      @comment = Comment.new
+      @category = @tool.category
+      flash[:warning] = "Form errors"
+      render "tools/show"
+    end
+  end
+
+  def edit
+    @review = Review.find(params[:id])
+    @tool = @review.tool
+  end
+
+  def update
+    @review = Review.find(params[:id])
+    @review.update(review_params)
+    @tool = @review.tool
+    if @review.save
+      flash[:info] = "Review updated"
+      redirect_to @tool
+    else
+      flash[:warning] = "Form errors"
+      render :edit
     end
   end
 

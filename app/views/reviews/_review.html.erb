@@ -1,28 +1,31 @@
 <% unless review.body.empty? %>
 <div class="review">
-  <% if current_user && (current_user.admin? || review.user) %>
-    <%= button_to "Delete review #{review.id}",
-    tool_review_path(review.tool, review), method: :delete,
-    class: "small button radius" %>
+  <% if current_user && (current_user.admin? || current_user == review.user) %>
+    <ul class="inline-list">
+      <li><%= link_to "Edit Review", edit_tool_review_path(review.tool, review), method: :get %></li>
+      <li><%= link_to "Delete Review", tool_review_path(review.tool, review), method: :delete %></li>
+    </ul>
   <% end %>
 
   <p><%= review.star_rating %></p>
   <p><%= review.body %></p>
+  
   <% if user_signed_in? %>
     <div class='vote-area'>
       <a href="#" class="upvote" user-id="<%= current_user.id %>"
         review-id="<%= review.id %>" tool-id= "<%= @tool.id %>"
         id="upvote-<%= review.id %>"> ▲ </a>
       <a href="#" class="downvote" user-id="<%= current_user.id %>"
-        review-id="<%= review.id %>" tool-id= "<%= @tool.id %>" 
+        review-id="<%= review.id %>" tool-id= "<%= @tool.id %>"
         id="downvote-<%= review.id %>"> ▼ </a>
       <div id="vote-count-<%= review.id %>">Score: <%= review.vote_count %></div>
     </div>
   <% end %>
+
   <%= link_to "#{review.comments.count} comment(s)", "#", class: "comment-toggle" %>
 
   <div class="small-12 column comment-div" hidden>
-    <%= render partial: "comments_section", locals: {review: review} %>
+    <%= render partial: "tools/comments_section", locals: {review: review} %>
   </div>
 </div>
 <% end %>

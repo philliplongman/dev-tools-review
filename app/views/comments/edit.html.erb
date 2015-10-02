@@ -1,0 +1,17 @@
+<div class="small-12 column">
+  <h1>Edit comment</h1>
+</div>
+
+<div class="small-12 column">
+  <%= form_for [@review, @comment], url: review_comment_path do |f| %>
+    <%= render "layouts/form_errors", object: f.object %>
+
+    <%= f.label :body, "Comment" %>
+    <%= f.text_area :body %>
+    <%= f.submit 'Submit comment', class: "small button radius" %>
+  <% end %>
+</div>
+
+<div class="small-12 column">
+  <%= link_to "Cancel", @tool %>
+</div>

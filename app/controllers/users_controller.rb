@@ -5,10 +5,30 @@ class UsersController < ApplicationController
     @users = User.all
   end
 
+  def show
+    @user = current_user
+  end
+
+  def edit
+    @user = current_user
+  end
+
+  def update
+    @user = current_user
+    @user.update(user_params)
+    if @user.save
+      flash[:info] = "User info updated"
+      redirect_to @user
+    else
+      flash[:warning] = "Form errors"
+      render :edit
+    end
+  end
+
   def destroy
     @user = User.find(params[:id])
     @user.destroy
-    flash[:alert] = "User deleted"
+    flash[:info] = "User deleted"
     redirect_to users_path
   end
 
@@ -16,5 +36,9 @@ class UsersController < ApplicationController
     unless current_user.admin?
       raise ActionController::RoutingError.new("Not Found")
     end
+  end
+
+  def user_params
+    params.require(:user).permit(:email)
   end
 end

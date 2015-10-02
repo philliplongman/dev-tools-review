@@ -24,24 +24,42 @@ class ToolsController < ApplicationController
     @categories = Category.all
   end
 
-  def destroy
-    @tool = Tool.find(params[:id])
-    @tool.destroy
-    flash[:alert] = "Tool deleted"
-    redirect_to tools_path
-  end
-
   def create
     @tool = Tool.new(tool_params)
     @tool.user = current_user
     if @tool.save
-      flash[:notice] = "Successfully created a new dev tool!"
-      redirect_to tool_path(@tool)
+      flash[:success] = "Successfully created a new dev tool!"
+      redirect_to @tool
     else
-      flash[:errors] = @tool.errors.full_messages.join(" | ")
       @categories = Category.all
+      flash[:warning] = "Form errors"
       render :new
     end
+  end
+
+  def edit
+    @tool = Tool.find(params[:id])
+    @categories = Category.all
+  end
+
+  def update
+    @tool = Tool.find(params[:id])
+    @tool.update(tool_params)
+    if @tool.save
+      flash[:info] = "Tool updated"
+      redirect_to tool_path(@tool)
+    else
+      @categories = Category.all
+      flash[:warning] = "Form errors"
+      render :edit
+    end
+  end
+
+  def destroy
+    @tool = Tool.find(params[:id])
+    @tool.destroy
+    flash[:success] = "Tool deleted"
+    redirect_to tools_path
   end
 
   private

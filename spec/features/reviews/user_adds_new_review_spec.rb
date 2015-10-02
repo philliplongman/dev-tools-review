@@ -34,7 +34,7 @@ feature 'authenticated user adds new review to a dev tool - ', %(
     visit tool_path(tool)
     click_button 'Submit'
 
-    expect(page).to have_content("Please specify rating")
+    expect(page).to have_content("Form errors")
   end
 
   scenario 'unauthenticated user submits a review' do

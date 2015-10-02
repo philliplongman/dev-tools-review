@@ -1,0 +1,10 @@
+<div class="small-12 columns">
+  <h1>Edit user info</h1>
+  <%= form_for @user do |f| %>
+    <%= render "layouts/form_errors", object: f.object %>
+  
+    <%= f.label :email %>
+    <%= f.email_field :email %>
+    <%= f.submit "Submit", class: "button radius" %>
+  <% end %>
+</div>
