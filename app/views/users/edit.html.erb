@@ -2,9 +2,11 @@
   <h1>Edit user info</h1>
   <%= form_for @user do |f| %>
     <%= render "layouts/form_errors", object: f.object %>
-  
+
     <%= f.label :email %>
     <%= f.email_field :email %>
+    <%= f.label 'Upload profile photo' %>
+    <%= f.file_field :profile_photo %>
     <%= f.submit "Submit", class: "button radius" %>
   <% end %>
 </div>
