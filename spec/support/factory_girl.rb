@@ -30,4 +30,10 @@ FactoryGirl.define do
     password 'password'
     password_confirmation 'password'
   end
+
+  factory :vote do
+    state "upvote"
+    user
+    review
+  end
 end

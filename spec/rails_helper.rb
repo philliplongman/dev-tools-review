@@ -11,6 +11,7 @@ require File.join(File.dirname(__FILE__), 'support/factory_girl')
 require 'capybara/rspec'
 require 'capybara/poltergeist'
 require 'database_cleaner'
+
 Capybara.javascript_driver = :poltergeist
 
 Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }

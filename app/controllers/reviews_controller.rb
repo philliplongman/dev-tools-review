@@ -3,6 +3,7 @@ class ReviewsController < ApplicationController
   before_action :set_review, only: [:destroy]
   before_action :authorize_user, only: [:destroy]
 
+
   def destroy
     @review = Review.find(params[:id])
     @review.destroy

@@ -16,6 +16,7 @@ feature 'Authenticated user adds comment on review - ', %(
   let(:review) { FactoryGirl.create(:review) }
 
   scenario 'User sees link to add a comment under review', js: true do
+    sign_in
     visit tool_path(review.tool)
 
     expect(page).to have_content('0 comment(s)')
