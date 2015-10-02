@@ -1,0 +1,11 @@
+Ahoy, mate!
+
+A fellow reviewer has reviewed the tool you posted!
+
+<%= "#{@review.user.email} rated #{@review.tool.name}!" %>
+
+<%= "#{@review.user.email}:" %>
+<%= "#{'★' * @review.rating}" %>
+<% if @review.body %>
+  <%= "#{@review.body}"%>
+<% end %>
