@@ -15,10 +15,10 @@ RSpec.describe Review, type: :model do
   describe "#vote_count" do
     it "should tally the total upvotes minus the total downvotes" do
       review = FactoryGirl.create(:review)
-      review2 = FactoryGirl.create(:review)
-      FactoryGirl.create(:vote, 12, review: review2)
-      FactoryGirl.create(:vote, 6, review: review)
-      FactoryGirl.create(:vote, 3, review: review, state: "downvote")
+      other_review = FactoryGirl.create(:review)
+      FactoryGirl.create_list(:vote, 12, review: other_review)
+      FactoryGirl.create_list(:vote, 6, review: review)
+      FactoryGirl.create_list(:vote, 3, review: review, state: "downvote")
       expect(review.vote_count).to eq(3)
     end
   end
