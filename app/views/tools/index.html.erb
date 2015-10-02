@@ -1,17 +1,21 @@
 <div class="row">
-
-  <% if params[:search] %>
-    <h1>Search Results</h1>
-  <% else %>
-    <h1>Dev Tools</h1>
-  <% end %>
+  <div class="small-12 column">
+    <% if params[:search] %>
+      <h1>Search Results</h1>
+    <% else %>
+      <h1>Dev Tools</h1>
+    <% end %>
+  </div>
 
   <div class="small-12 column">
     <h6><%= "No results found." if params[:search] && @tools.empty? %></h6>
 
     <ul class="no-bullet">
       <% @tools.each do |tool| %>
-      <li><%= link_to tool.name, tool_path(tool.id) %></li>
+        <li class="tool-list-item">
+          </h2><%= link_to tool.name, tool_path(tool.id) %><h2>
+          <p><%= tool.description %></p>
+        </li>
       <% end %>
     </ul>
   </div>

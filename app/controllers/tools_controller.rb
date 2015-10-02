@@ -5,9 +5,9 @@ class ToolsController < ApplicationController
 
   def index
     if params[:search]
-      @tools = Tool.search(params[:search]).order(:name).page params[:page]
+      @tools = Tool.search(params[:search]).order(:name).page(params[:page]).per(10)
     else
-      @tools = Tool.order(:name).page params[:page]
+      @tools = Tool.order(:name).page(params[:page]).per(10)
     end
   end
 
