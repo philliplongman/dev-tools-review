@@ -34,7 +34,8 @@ class ReviewsController < ApplicationController
   end
 
   def update
-    @review = Review.update(params[:id], review_params)
+    @review = Review.find(params[:id])
+    @review.update(review_params)
     @tool = @review.tool
     if @review.save
       flash[:info] = "Review updated"

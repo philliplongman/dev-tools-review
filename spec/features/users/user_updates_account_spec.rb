@@ -12,19 +12,17 @@ feature 'user registers', %(
   # [] I am taken to a form to update my email.
   # [] When I submit my changes, I am returned to my account page.
 
-  before(:each) do
-    @user = FactoryGirl.create(:user)
-  end
+  let(:user) { FactoryGirl.create(:user) }
 
   scenario 'User visits account page' do
-    sign_in_specific(@user)
+    sign_in_specific(user)
     click_link "My Account"
 
-    expect(page).to have_content(@user.email)
+    expect(page).to have_content(user.email)
   end
 
   scenario 'User visits account page' do
-    sign_in_specific(@user)
+    sign_in_specific(user)
     click_link "My Account"
     first("tr").click_link("Update")
     fill_in "Email", with: "newemail@gmail.com"

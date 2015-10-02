@@ -13,7 +13,8 @@ class UsersController < ApplicationController
   end
 
   def update
-    @user = User.update(current_user, user_params)
+    @user = current_user
+    @user.update(user_params)
     if @user.save
       flash[:info] = "User info updated"
       redirect_to @user

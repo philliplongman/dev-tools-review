@@ -13,13 +13,11 @@ feature 'authenticated user updates a tool they created - ', %(
   # [x] After I submit my changes, I am returned to the tools page, and
   #     I recieve a message informing me the tool has been updated.
 
-  before(:each) do
-    @tool = FactoryGirl.create(:tool)
-  end
+  let(:tool) { FactoryGirl.create(:tool) }
 
   scenario "Author of tool submission edits the title and description" do
-    sign_in_specific(@tool.user)
-    visit tool_path(@tool)
+    sign_in_specific(tool.user)
+    visit tool_path(tool)
     click_link "Edit Tool"
     fill_in('Name', with: 'Something new')
     fill_in('Description', with: 'a description')
@@ -31,7 +29,7 @@ feature 'authenticated user updates a tool they created - ', %(
 
   scenario "User cannot edit a tool they did not submit" do
     sign_in
-    visit tool_path(@tool)
+    visit tool_path(tool)
     expect(page).to_not have_content('Edit Tool')
   end
 end

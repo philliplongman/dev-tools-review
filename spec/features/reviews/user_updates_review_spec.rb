@@ -13,13 +13,11 @@ feature 'authenticated user updates a review they created - ', %(
   # [] After I submit my changes, I am returned to the tool page for the
   #     review, and I see a message informing me the review has been updated.
 
-  before(:each) do
-    @review = FactoryGirl.create(:review)
-  end
+  let(:review) { FactoryGirl.create(:review) }
 
   scenario "User edits a review they submitted" do
-    sign_in_specific(@review.user)
-    visit tool_path(@review.tool)
+    sign_in_specific(review.user)
+    visit tool_path(review.tool)
     click_link "Edit Review"
     fill_in('My review', with: 'a new description')
     click_button 'Submit'
@@ -29,7 +27,7 @@ feature 'authenticated user updates a review they created - ', %(
 
   scenario "User cannot edit a tool they did not submit" do
     sign_in
-    visit tool_path(@review.tool)
+    visit tool_path(review.tool)
     expect(page).to_not have_content('Edit Tool')
   end
 end

@@ -43,7 +43,8 @@ class ToolsController < ApplicationController
   end
 
   def update
-    @tool = Tool.update(params[:id], tool_params)
+    @tool = Tool.find(params[:id])
+    @tool.update(tool_params)
     if @tool.save
       flash[:info] = "Tool updated"
       redirect_to tool_path(@tool)

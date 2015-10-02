@@ -34,7 +34,8 @@ class CommentsController < ApplicationController
   end
 
   def update
-    @comment = Comment.update(params[:id], comment_params)
+    @comment = Comment.find(params[:id])
+    @comment.update(comment_params)
     @tool = @comment.review.tool
     if @comment.save
       flash[:info] = "Comment updated"

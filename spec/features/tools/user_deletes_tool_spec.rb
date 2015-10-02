@@ -1,13 +1,11 @@
 require 'rails_helper'
 
 feature "User deletes its own tool" do
-  background do
-    @tool = FactoryGirl.create(:tool)
-  end
+  let(:tool) { FactoryGirl.create(:tool) }
 
   scenario "User is able to delete its own tool" do
-    sign_in_specific(@tool.user)
-    visit tool_path(@tool)
+    sign_in_specific(tool.user)
+    visit tool_path(tool)
     click_link "Delete Tool"
     # expect { Review.find(@review.id) }.
     #   to raise_error { "Couldn't find Tool with 'id'=#{@tool.id}" }
@@ -17,7 +15,7 @@ feature "User deletes its own tool" do
 
   scenario "User is unable to delete another persons tool" do
     sign_in
-    visit tool_path(@tool)
+    visit tool_path(tool)
     expect(page).to_not have_content("Delete Tool")
   end
 end
