@@ -17,6 +17,6 @@ class Review < ActiveRecord::Base
   end
 
   def star_rating
-    '★' * rating.to_i
+    '<i class="fa fa-wrench"></i>' * rating.to_i
   end
 end

@@ -9,7 +9,7 @@
   <div class="small-12 column">
     <h6><%= "No results found." if params[:search] && @tools.empty? %></h6>
 
-    <ul>
+    <ul class="no-bullet">
       <% @tools.each do |tool| %>
       <li><%= link_to tool.name, tool_path(tool.id) %></li>
       <% end %>

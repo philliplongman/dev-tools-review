@@ -12,7 +12,8 @@
 
 <div class="row">
   <h3>Reviews</h3>
-  <h6><%= "#{@tool.reviews.count} reviews—average rating: #{@tool.average_stars}"%></h6>
+  <h6><%= "#{@tool.reviews.count} reviews—average rating: " %><%= @tool.average_stars.html_safe %></h6>
+
 
   <%= render @reviews %>
 </div>
