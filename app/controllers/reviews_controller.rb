@@ -19,7 +19,7 @@ class ReviewsController < ApplicationController
 
     if @review.save
       flash[:success] = "Success"
-      ReviewMailer.new_review(@review).deliver_later
+      # ReviewMailer.new_review(@review).deliver_later
       redirect_to tool_path(@tool)
     else
       @reviews = @tool.reviews
