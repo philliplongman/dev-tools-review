@@ -10,7 +10,7 @@ class Tool < ActiveRecord::Base
 
   def average_stars
     return "" if reviews.empty?
-    '★' * reviews.average(:rating)
+    '<i class="fa fa-wrench"></i>' * reviews.average(:rating)
   end
 
   def self.search(query)
