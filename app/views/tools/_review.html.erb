@@ -8,6 +8,17 @@
 
   <p><%= review.star_rating %></p>
   <p><%= review.body %></p>
+  <% if user_signed_in? %>
+    <div class='vote-area'>
+      <a href="#" class="upvote" user-id="<%= current_user.id %>"
+        review-id="<%= review.id %>" tool-id= "<%= @tool.id %>"
+        id="upvote-<%= review.id %>"> ▲ </a>
+      <a href="#" class="downvote" user-id="<%= current_user.id %>"
+        review-id="<%= review.id %>" tool-id= "<%= @tool.id %>" 
+        id="downvote-<%= review.id %>"> ▼ </a>
+      <div id="vote-count-<%= review.id %>">Score: <%= review.vote_count %></div>
+    </div>
+  <% end %>
   <%= link_to "#{review.comments.count} comment(s)", "#", class: "comment-toggle" %>
 
   <div class="small-12 column comment-div" hidden>

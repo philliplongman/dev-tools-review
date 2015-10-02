@@ -59,6 +59,3 @@ class ToolsController < ApplicationController
     params.require(:tool).permit(:name, :category_id, :description)
   end
 end
-
-# create comments controller with create application
-# edit show action in tools controllerclear

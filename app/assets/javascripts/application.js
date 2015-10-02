@@ -17,7 +17,3 @@
 //= require_tree .
 
 $(function(){ $(document).foundation(); });
-
-$(".comment-toggle").click(function() {
-  $(this).closest(".review").find(".comment-div").slideToggle("slow");
-});
